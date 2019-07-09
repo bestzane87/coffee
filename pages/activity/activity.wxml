@@ -1,0 +1,76 @@
+<view wx:if='{{showPage}}'>
+<!-- 选择城市 -->
+<view class='city flexible border_bottom'>
+  <view catchtap='chooseCity'>
+    <image
+      class='icon_location'
+      src='/images/icon-location.png'
+    ></image>
+    <text>{{curCity}}</text>
+  </view>
+  <!-- <text catchtap='tapHelper'>小助手</text> -->
+</view>
+
+<!-- 头部类型筛选及下拉框 -->
+<view class='top_container'>
+  <official-account></official-account>
+  <view class='top_bar flexible'>
+    <!-- <block wx:for='{{queueList}}' wx:key='{{index}}'> -->
+    <view class='type_title' catchtap='toggleList' data-type='allType'>
+      <view class='{{checked === "allType" ? "checked" : ""}}'>
+        {{allTypeText}}</view>
+      <image src='/images/arrow.png' class='arrow_top'></image>
+    </view>
+   
+    <view class='type_title' catchtap='toggleList' data-type='allTime'>
+      <view class='{{checked === "allTime" ? "checked" : ""}}'>
+        {{allTimeText}}</view>
+      <image src='/images/arrow.png' class='arrow_top'></image>
+    </view>
+
+    <view class='type_title' catchtap='toggleList' data-type='allCost'>
+      <view class='{{checked === "allCost" ? "checked" : ""}}'>
+        {{allCostText}}</view>
+      <image src='/images/arrow.png' class='arrow_top'></image>
+    </view>
+
+    <view class='type_title' catchtap='toggleList' data-type='multiple'>
+      <view class='{{checked === "multiple" ? "checked" : ""}}'>
+        {{multipleText}}</view>
+      <image src='/images/arrow.png' class='arrow_top'></image>
+    </view>
+    <!-- </block> -->
+  </view>
+  <view class='queue_item' wx:if='{{showMenu}}'>
+    <block wx:for='{{typeList}}' wx:key='{{index}}'>
+      <view data-title='{{checked}}' catchtap='chooseType' data-name='{{item}}' data-index='{{index}}' class='list_item'>{{item}}</view>
+    </block>
+  </view>
+</view>
+
+<view class='padding_t'>
+  <view class='no_data fs_28' wx:if='{{noData && !actList.length}}'>暂无活动</view>
+
+  <block wx:for='{{actList}}' wx:key='{{index}}'>
+    <view class='act_item' catchtap='skipToDetail' data-id='{{item.ActivityId}}'>
+      <view class='img_wrapper'>
+        <image src='{{item.PosterImage + "?x-oss-process=image/resize,w_250"}}' mode='aspectFill' lazy-load='true'></image>
+      </view>
+      <view class='detail_wrapper'>
+        <view class='act_item_name {{item.IsStateText == "已结束" || item.IsStateText == "已取消" ? "color_l" : ""}}'>{{item.Title}}</view>
+        <view class='act_item_person'>
+          <text class='{{item.IsStateText == "已结束" || item.IsStateText == "已取消" ? "color_l" : ""}}'>{{item.PersonNumberText}}</text>
+          <text class='{{item.IsStateText == "已结束" || item.IsStateText == "已取消" ? "color_l" : ""}}'>{{item.IsStateText}}</text>
+        </view>
+        <view class='bottom_con'>
+          <view>{{item.DateTimeText}} {{item.Place}}</view>
+          <view class='act_item_cost'>{{item.PriceText}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class='no_data fs_28' wx:if='{{noData && actList.length}}'>已经到底了~</view>
+</view>
+
+</view>

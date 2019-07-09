@@ -1,0 +1,455 @@
+<import src='/template/template.wxml' />
+<view class='padding_b'>
+<view
+  class='condition_wrapper flexible'
+>
+  <block wx:for='{{enrollMsgList}}' wx:key='{{index}}'>
+    <view
+      wx:if='{{item.Name == "姓名"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>{{item.Name}}</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <input
+          maxlength='8'
+          data-name='{{item.Name}}'
+          bindblur='handleSetInputName'
+          placeholder='请输入'
+          placeholder-class='input_placeholder'
+          value='{{initialFormList[item.Name]}}'
+        ></input>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+    </view>
+
+
+    <view
+      wx:elif='{{item.Name == "手机号"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>手机号</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <view
+          class='{{initialFormList[item.Name] ? "" : "color_l"}} phone_number'
+        ><button
+          class='fs_30'
+          open-type='getPhoneNumber'
+          bindgetphonenumber="getPhoneNumber"
+        >{{initialFormList[item.Name]}}</button></view>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+    </view>
+
+
+
+
+    <view
+      data-name='性别'
+      bindtap='navigateValidatePhone'
+      wx:elif='{{item.Name === "性别"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>性别</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker
+          data-name='{{item.Name}}'
+          data-arr='{{constants.sexArr}}'
+          bindchange='handleSexChange'
+          range='{{constants.sexArr}}'
+          disabled='{{tapCase || userMsg.Sex}}'
+        >
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "出生日期"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>出生日期</view>
+        <view wx:if='{{item.IsFill === "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker
+          start='1950-01-01'
+          end='{{requiredTime}}'
+          mode='date'
+          data-name='{{item.Name}}'
+          bindchange='handleSetInput'
+          disabled='{{tapCase}}'
+        >
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "职业"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>职业</view>
+        <view wx:if='{{item.IsFill === "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker mode='multiSelector' data-name='{{item.Name}}' bindchange='handleCareerChange' disabled='{{tapCase}}' bindcolumnchange='handleCareerColumnChange' range='{{careerArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view
+      bindtap='navigateValidatePhone'
+      wx:elif='{{item.Name === "籍贯"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>籍贯</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' mode='region' data-name='{{item.Name}}' bindchange='handleRegionPickerChange'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view
+      bindtap='navigateValidatePhone'
+      wx:elif='{{item.Name === "工作地"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>工作地</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' mode='region' data-name='{{item.Name}}' bindchange='handleRegionPickerChange'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "学历"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>学历</view>
+        <view  wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.educationArr}}' bindchange='handlePickerChange' range='{{constants.educationArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "身高"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>身高</view>
+        <view  wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.heightArr}}' bindchange='handlePickerChange' range='{{constants.heightArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] && initialFormList[item.Name] != "0" ? "" : "color_light"}}'>{{initialFormList[item.Name] != '0' && initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "收入"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>收入</view>
+        <view  wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.salaryArr}}' bindchange='handlePickerChange' range='{{constants.salaryArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "婚姻状况"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>婚姻状况</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.marriageArr}}' bindchange='handlePickerChange' range='{{constants.marriageArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "住房情况"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>住房情况</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.houseArr}}' bindchange='handlePickerChange' range='{{constants.houseArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name == "身份证号码(买保险用)"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>身份证号码(买保险用)</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <input
+          disabled='{{tapCase}}'
+          data-name='{{item.Name}}'
+          data-required='{{item.IsFill == "1"}}'
+          bindblur='handleSetInput'
+          placeholder='请输入'
+          placeholder-class='input_placeholder'
+          value='{{initialFormList[item.Name]}}'
+        ></input>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+    </view>
+
+
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "年龄"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>年龄</view>
+        <view wx:if='{{item.IsFill === "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker
+          start='1950-01-01'
+          end='{{requiredTime}}'
+          mode='date'
+          data-name='{{item.Name}}'
+          bindchange='handleSetInput'
+          disabled='{{tapCase}}'
+        >
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    
+    <view 
+      catchtap='navigateToChooseRole' 
+      wx:elif='{{item.Name === "角色名称"}}' 
+      class='condition_item flexible border_bottom'
+      data-formid='{{item.ActivityFormId}}'
+      data-activityid='{{activityId}}'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>角色名称</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible color_light'>
+        <view class='flexible picker_item'>
+          <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+          <image src='/images/arrow_r.png' class='arrow_r'></image>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+
+
+
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name === "有无购车"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>有无购车</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{constants.carArr}}' bindchange='handlePickerChange' range='{{constants.carArr}}'>
+          <view class='flexible picker_item'>
+            <view class='fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Name == "伴侣身份证号码(买保险用)"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>伴侣身份证号码(买保险用)</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <input
+          disabled='{{tapCase}}'
+          data-name='{{item.Name}}'
+          data-required='{{item.IsFill == "1"}}'
+          bindblur='handleSetIDCard'
+          placeholder='请输入'
+          placeholder-class='input_placeholder'
+          value='{{initialFormList[item.Name]}}'
+        ></input>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+    </view>
+
+    <!-- 单选 -->
+    <view bindtap='navigateValidatePhone' wx:elif='{{item.Style == "2"}}' class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>{{item.Name}}</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <picker disabled='{{tapCase}}' data-name='{{item.Name}}' data-arr='{{chooseObj[item.Name]}}' bindchange='handlePickerChange' range='{{chooseObj[item.Name]}}'>
+          <view class='flexible picker_item'>
+            <view class='overflow fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+            <image src='/images/arrow_r.png' class='arrow_r'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+    <!-- 多选 -->
+    <view
+      data-name='{{item.Name}}'
+      bindtap='chooseCheckbox'
+      wx:elif='{{item.Style == "3"}}'
+      class='condition_item flexible border_bottom'
+    >
+      <view class='condition_name flexible'>
+        <view class='fs_32'>{{item.Name}}</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <view class='flexible picker_item'>
+          <view class='overflow fs_30 {{initialFormList[item.Name] ? "" : "color_light"}}'>{{initialFormList[item.Name] ? initialFormList[item.Name] : '请选择'}}</view>
+          <image src='/images/arrow_r.png' class='arrow_r'></image>
+        </view>
+      </view>
+
+
+
+<!-- 多选表单选择区域 -->
+<view
+  wx:if='{{curCheckbox == item.Name}}'
+  class='checkbox_wrapper'
+>
+  <view
+    catchtap='hideCheckboxArea'
+    class='cover_bg'
+  ></view>
+  <view
+    class='checkbox_container'
+  >
+    <view class='choose_items_title flexible'>
+      <view
+        class='cancle_text fs_34'
+        catchtap='cancelChoose'
+      >取消</view>
+      <view
+        catchtap='preventHide'
+        class='center_text fs_34'
+      >请选择</view>
+      <view
+        catchtap='confirmChoosebox'
+        class='confirm_text fs_34'
+      >确定</view>
+    </view>
+    <scroll-view
+      scroll-y
+      class='choose_items_wrapper'
+    >
+      <block
+        wx:for='{{chooseObj[item.Name]}}'
+        wx:key='{{index}}'
+        wx:for-item='choose'
+        wx:for-index='idx'
+      >
+        <view
+          data-name='{{item.Name}}'
+          data-index='{{idx}}'
+          catchtap='chooseCheckboxItem'
+          class='checkbox_item fs_28 {{choose.choosed ? "choosed" : ""}}'
+        >{{choose.value}}</view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+
+
+
+    </view>
+
+
+
+
+
+
+    <view bindtap='navigateValidatePhone' wx:else class='condition_item flexible border_bottom'>
+      <view class='condition_name flexible'>
+        <view class='fs_32'>{{item.Name}}</view>
+        <view wx:if='{{item.IsFill == "1"}}' class='condition_required'>(必填)</view>
+      </view>
+      <view class='condition_msg flexible'>
+        <input
+          disabled='{{tapCase}}'
+          data-name='{{item.Name}}'
+          bindblur='handleSetInput'
+          placeholder='{{item.Tips || "请输入"}}'
+          placeholder-class='input_placeholder'
+        ></input>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+    </view>
+  </block>
+</view>
+</view>
+
+<view
+  catchtap='ensureEnroll'
+  class='btn_wrapper flexible'
+>
+  <button
+    class='{{tapState ? "click" : ""}}'
+    disabled='{{tapState}}'
+  >下一步</button>
+</view>

@@ -1,0 +1,121 @@
+<import src='/template/template.wxml' />
+<import src='../../template/share/share.wxml' />
+
+<view class='avatar_wrapper flexible'>
+  <view>
+    <image class='avatar' src='{{sponsorMsg.HeadImage}}'></image>
+  </view>
+  <view class="color_f avatar_name">{{sponsorMsg.NickName}}</view>
+  <view class='flexible fans_act'>
+    <view data-num='{{sponsorMsg.FansNumber}}' catchtap='navigateToFansList' class="color_f">粉丝 {{sponsorMsg.FansNumber}}</view>
+    <view class="color_f">活动 {{sponsorMsg.ActivityNumber}}</view>
+    <!-- <view class="color_f">管理员 +</view> -->
+  </view>
+
+  <view catchtap='backToUserCenter' data-page='releaseActivity' class='focus_btn color_f'>发布活动</view>
+  <image src='{{sponsorMsg.HeadImage}}' class='filter_img'></image>
+</view>
+
+<view class='intro'>
+  <view class='intro_title'>主办方介绍</view>
+  <view data-page='setSponsorIntro' class='set_intro fs_28' catchtap='setSponsorIntro'>编辑</view>
+  <view class='intro_detail'>
+    <view class='first_line'>{{firstLineText}}</view>
+    <view class='second_line flexible' wx:if='{{secondLineText}}'>
+      <view>{{secondLineText}}</view>
+    </view>
+  </view>
+</view>
+
+
+<view class='position_wrapper'>
+
+  <view style='position: {{position}}; top: {{top}}px; z-index: 10000000' class='act_eva_label flexible' id='top_wrapper'>
+    <view data-label='act' bindtap='handleChangeLabel' class='{{choosedAct ? "choosed" : "unchoosed"}}'>活动</view>
+    <view data-label='eva' bindtap='handleChangeLabel' class='{{!choosedAct ? "choosed" : "unchoosed"}}'>历史评价</view>
+  </view>
+
+
+  <view wx:if='{{choosedAct}}'>
+    <!-- <scroll-view scroll-y bindscrolltolower='getMoreActivity'> -->
+    <block wx:for='{{activityList}}' wx:key='{{index}}'>
+      <view catchtap='navigateToDetail' data-id='{{item.ActivityId}}'>
+        <template is='activityItem' data='{{...item}}' />
+
+        <view class='operation_btn flexible borber_bottom_s' wx:if='{{item.ClickButton.length}}'>
+          <block wx:for='{{item.ClickButton}}' wx:for-item='i' wx:for-index='s' wx:key='{{s}}'>
+            <view class='tap_buttons {{item.ClickButton.length - 1 == s ? "y" : ""}}' catchtap='tapButtons' data-code='{{i.Key}}' data-activityid='{{item.ActivityId}}'>
+              <template is='{{i.Key}}' data='{{ value: i.Number }}' />
+            </view>
+          </block>
+        </view>
+      </view>
+
+    </block>
+    <view class='no_data fs_28 color_light' wx:if='{{noMoreActivity}}'>已经到底了~</view>
+    <!-- </scroll-view> -->
+  </view>
+
+  <view wx:else>
+    <!-- <scroll-view scroll-y bindscrolltolower='getMoreComment'> -->
+    <block wx:for='{{commentList}}' wx:key='{{index}}'>
+
+      <view class='inter_item'>
+        <view class='inter_person flexible border_bottom'>
+          <image src='{{item.UserSimple.HeadImage + "?x-oss-process=image/resize,w_150"}}' class='avatar'></image>
+          <view class='avatar_labels'>
+            <view class='avatar_name_l fs_32'>{{item.UserSimple.NickName}}</view>
+            <view>
+              <text>{{item.UserSimple.City}}</text>
+              <text class='vertical_line'>|</text>
+              <text>{{item.UserSimple.Age}}</text>
+              <text class='vertical_line'>|</text>
+              <text>{{item.UserSimple.Education}}</text>
+            </view>
+          </view>
+          <view class='inter_time fs_22'>{{item.CreateTimeText}}</view>
+        </view>
+        <view class='inter_qs_ask'>
+          <view class='question'>
+            <view wx:if='{{show}}' class='act_name fs_32 d' data-id='{{item.ActivityId}}' catchtap='navigateToDetail'>活动：{{item.ActivityTitle}}</view>
+            <view class='flexible history_comment'>
+              <view class='colored_yellow'>评</view>
+              <view class='fs_32 answer_content'>{{item.Contents}}</view>
+              <view data-id='{{item.EvaluateId}}' catchtap='toggleInput' class='fs_24 answer_text'>回复</view>
+            </view>
+          </view>
+
+          <view class='answer_list' wx:if='{{item.EvaluateReplyList.length}}'>
+            <block wx:for='{{item.EvaluateReplyList}}' wx:for-item='eva' wx:key='{{item}}'>
+              <view class='answer_item'>
+                <view class='person_answer fs_30'>{{eva.ReplyUserNickName}} 回复 {{eva.QuestionUserNickName}}</view>
+                <view class='text fs_30 flexible answer_list_text'>
+                  <view class='answer_list_item'>{{eva.Contents}}</view>
+                  <view data-id='{{eva.ReplyId}}' catchtap='deleteEvaReply' class='fs_24 answer_text'>删除</view>
+                </view>
+              </view>
+            </block>
+
+
+            <view class='arrow_top'></view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+    <view class='no_data fs_28 color_light' wx:if='{{noMoreComment}}'>已经到底了~</view>
+    <!-- </scroll-view> -->
+  </view>
+
+</view>
+
+<view catchtap='toggleInput' class='answer_text_container' wx:if='{{showAnswer}}'>
+  <view class='answer_text_wrapper flexible'>
+    <input placeholder='回复' focus='{{showAnswer}}' bindblur='getInputValue' bindconfirm='getInputValue' bindinput='getInputValue'></input>
+    <view catchtap='sendInputValue' class='input_anwser'>发送</view>
+  </view>
+</view>
+
+<view wx:if='{{showShareImg}}' class='{{showShareImg ? "show_share" : "hide_share"}}'>
+  <template is='showShare' data='{{text: shareInfo.RewardAbstract, imgurl: shareInfo.QrCodeUrl}}' />
+</view>

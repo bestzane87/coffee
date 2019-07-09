@@ -1,0 +1,60 @@
+<import src='/template/template.wxml' />
+
+<view class='avatar_wrapper'>
+  <view catchtap='getUserDetail'>
+    <template is='avatarMsg' data='{{...avatarMsg}}'></template>
+  </view>
+
+  <view class='msg_item_top flexible'>
+    <view class='vertical_line'></view>
+    <view>报名信息</view>
+  </view>
+  <block wx:for='{{personDetail.FormValues}}' wx:key='{{index}}'>
+    <view class='msg_item flexible' wx:if='{{item.Value}}'>
+      <view class='item_title'>{{item.Key}}</view>
+      <view>{{item.Value}}</view>
+    </view>
+  </block>
+  <view class='msg_item_top flexible'>
+    <view class='vertical_line'></view>
+    <view>票种信息</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>报名时间</view>
+    <view>{{personDetail.TicketCreateTimeText}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>票种</view>
+    <view>{{personDetail.TicketName}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>{{personDetail.TicketType == 1 ? "票价" : "押金"}}</view>
+    <view>{{personDetail.TicketMoneyText}}</view>
+  </view>
+
+
+  <!-- <view class='flexible match' wx:if='{{activityMsg.EnrollHistory.length}}'>
+    <view class='vertical_line'></view>
+    <view class='all_width'>报名历史状态</view>
+    <view class='history_item'>
+      <block wx:for='{{activityMsg.EnrollHistory}}' wx:key='{{index}}'>
+        <view class='flexible d'>
+          <view>{{item.Key}}</view>
+          <view>{{item.Value}}</view>
+        </view>
+      </block>
+    </view>
+  </view> -->
+
+
+
+
+</view>
+
+<view class='operation_btn border_none flexible' wx:if='{{personDetail.ClickButton.length}}'>
+  <block wx:for='{{personDetail.ClickButton}}' wx:for-item='i' wx:key='{{index}}'>
+    <view class='tap_buttons {{personDetail.ClickButton.length - 1 == index ? "y" : ""}}' catchtap='tapButtons' data-code='{{i.Key}}' data-id='{{enrollId}}' data-activityid='{{activityId}}'>
+      <template is='{{i.Key}}' />
+    </view>
+  </block>
+</view>

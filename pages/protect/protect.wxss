@@ -1,0 +1,9 @@
+/* pages/protect/protect.wxss */
+.container {
+  padding: 24rpx;
+  font-size: 28rpx;
+}
+
+text {
+  font-weight: bolder;
+}

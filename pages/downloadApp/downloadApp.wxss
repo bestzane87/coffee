@@ -1,0 +1,46 @@
+.download_container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #f0f1f3;
+}
+.download {
+  width: 550rpx;
+  height: 870rpx;
+}
+button {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.14);
+}
+.tips_container {
+  justify-content: center;
+  margin: 40rpx 0;
+}
+.img_container {
+  margin-top: 30rpx;
+}
+.save_container, .img_container {
+  display: flex;
+  justify-content: center;
+}
+.save {
+  height: 44rpx;
+  width: 50rpx;
+  vertical-align: middle;
+}
+.tips {
+  color: #999;
+  font-size: 28rpx;
+  margin: 0 30rpx;
+}
+.justify_line {
+  width: 50rpx;
+  height: 3rpx;
+  background: #999;
+}

@@ -1,0 +1,81 @@
+{
+  "pages": [
+    "pages/activity/activity",
+    "pages/allAttempter/allAttempter",
+    "pages/refund/refund",
+    "pages/enrollerSearch/enrollorSearch",
+    "pages/protect/protect",
+    "pages/services/services",
+    "pages/chooseRole/chooseRole",
+    "pages/chooseLogin/chooseLogin",
+    "pages/activityDetailCode/activityDetailCode",
+    "pages/refuseReason/refuseReason",
+    "pages/helpers/helpers",
+    "pages/getRewardResult/getRewardResult",
+    "pages/userDetail/userDetail",
+    "pages/updateMsg/updateMsg",
+    "pages/downloadApp/downloadApp",
+    "pages/uploadAvatar/uploadAvatar",
+    "pages/activityInfoDetail/activityInfoDetail",
+    "pages/enrollActivityDetail/enrollActivityDetail",
+    "pages/attempterDetail/attempterDetail",
+    "pages/chooseList/chooseList",
+    "pages/sponsorChooseList/sponsorChooseList",
+    "pages/cropper/cropper",
+    "pages/allActivities/allActivities",
+    "pages/chooseCity/chooseCity",
+    "pages/addMsg/addMsg",
+    "pages/login/login",
+    "pages/enrollActivity/enrollActivity",
+    "pages/ticketTypes/ticketTypes",
+    "pages/applicants/applicants",
+    "pages/evaluate/evaluate",
+    "pages/avatarDetail/avatarDetail",
+    "pages/collectedActivities/collectedActivities",
+    "pages/userCenter/userCenter",
+    "pages/interlocution/interlocution",
+    "pages/mutualChoose/mutualChoose",
+    "pages/enrollForm/enrollForm",
+    "pages/focusedSponsor/focusedSponsor",
+    "pages/meSponsor/meSponsor",
+    "pages/sponsorDetail/sponsorDetail",
+    "pages/activityDetail/activityDetail",
+    "pages/payment/payment",
+    "pages/consult/consult",
+    "pages/inputSaying/inputSaying",
+    "pages/myFans/myFans",
+    "pages/city/city"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#AD91EC",
+    "navigationBarTitleText": "约杯咖啡",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#2E2E2E",
+    "selectedColor": "#857FF7",
+    "list": [
+      {
+        "pagePath": "pages/activity/activity",
+        "text": "活动",
+        "iconPath": "images/activity.png",
+        "selectedIconPath": "images/activity_c.png"
+      },
+      {
+        "pagePath": "pages/userCenter/userCenter",
+        "text": "我的",
+        "iconPath": "images/person.png",
+        "selectedIconPath": "images/person_c.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

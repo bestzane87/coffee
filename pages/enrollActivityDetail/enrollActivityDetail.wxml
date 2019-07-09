@@ -1,0 +1,102 @@
+<import src='/template/template.wxml'/>
+<import src='../../template/share/share.wxml' />
+<import src='../../template/showModal/showModal.wxml' />
+
+<view class='container'>
+  <view data-id='{{enrollerMsg.Activity.ActivityId}}' class='act_detail flexible' catchtap='navigateToDetail'>
+    <image src='{{enrollerMsg.Activity.PosterImage}}' class='act_bg'></image>
+    <view class='act_msg flexible'>
+      <view class='left_area'>
+        <view class='act_name_l fs_32'>{{enrollerMsg.Activity.Title}}</view>
+        <view class='attempt_num'>{{enrollerMsg.Activity.PersonNumberText}}</view>
+        <view class='flexible date_place'>
+          <view>{{enrollerMsg.Activity.DateTimeText}}</view>
+          <view class='place'>{{enrollerMsg.Activity.Place}}</view>
+        </view>
+      </view>
+      <view class='right_area'>
+        <view class='state fs_24'>{{enrollerMsg.Activity.IsStateText}}</view>
+        <view class='costs fs_22'>{{enrollerMsg.Activity.PriceText}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+  <view class='msg_item_top flexible'>
+    <view class='vertical_line'></view>
+    <view class='fs_34'>票券信息</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>{{enrollerMsg.TicketName}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>{{enrollerMsg.TicketTypeText}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title cost'>{{enrollerMsg.TicketMoneyText}}</view>
+  </view>
+  <view
+    wx:if='{{enrollerMsg.TicketExplain}}'
+    class='msg_item flexible'
+  >
+    <view class='item_title'>票种说明：{{enrollerMsg.TicketExplain}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>{{enrollerMsg.EnrollCodeText}}</view>
+  </view>
+  <view class='msg_item flexible' wx:if='{{enrollerMsg.RoleName}}'>
+    <view class='item_title'>{{enrollerMsg.RoleName}}</view>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='item_title'>{{enrollerMsg.TicketCreateTimeText}}</view>
+  </view>
+
+
+
+  <view class='flexible match' wx:if='{{enrollerMsg.EnrollHistory.length}}'>
+    <view class='vertical_line'></view>
+    <view class='all_width fs_34 history_title'>报名历史状态</view>
+</view>
+
+<view class='history_item'>
+  <block wx:for='{{enrollerMsg.EnrollHistory}}' wx:key='{{index}}'>
+    <view class='flexible d'>
+      <view class='padding_l'>{{item.Key}}</view>
+      <view>{{item.Value}}</view>
+    </view>
+    <view
+      wx:if='{{item.Number}}'
+      class='padding_l fs_30 reason'
+    >{{item.Number}}</view>
+  </block>
+</view>
+
+  <view class='operation_btn flexible' wx:if='{{enrollerMsg.ClickButton.length}}'>
+    <block wx:for='{{enrollerMsg.ClickButton}}' wx:key='{{index}}' wx:for-item='i'>
+      <view
+        class='tap_buttons {{enrollerMsg.ClickButton.length - 1 == index ? "y" : ""}}'
+        catchtap='tapButtons'
+        data-code='{{i.Key}}'
+        data-activityid='{{enrollerMsg.Activity.ActivityId}}'
+        data-enrollid='{{enrollerMsg.EnrollId}}'
+        data-cost='{{enrollerMsg.TicketMoney}}'
+        data-chatgroupid='{{enrollerMsg.Activity.GroupChatId}}'
+        data-paynumber='{{enrollerMsg.EnrollSerialNumbr}}'
+      >
+        <template is='{{i.Key}}' data='{{text: i.Value}}'/>
+      </view>
+    </block>
+  </view>
+
+<view
+  wx:if='{{showShareImg}}'
+  class='{{showShareImg ? "show_share" : "hide_share"}}'
+>
+  <template
+    is='showShare'
+    data='{{text: shareInfo.RewardAbstract, imgurl: shareInfo.QrCodeUrl}}'/>
+</view>
+
+<view wx:if='{{showShareContent}}'>
+  <template is='showModal' data='{{content}}'/>
+</view>

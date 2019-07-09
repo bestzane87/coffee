@@ -1,0 +1,30 @@
+<import src='/template/template.wxml'/>
+
+<view class='msg_wrapper'>
+  <view
+    catchtap='navigateToCut'
+    class='msg_item flexible border_bottom'
+  >
+    <view class='fs_32'>头像</view>
+    <view class='main'>
+      <image src='{{avatarUrl}}' class='avatar'></image>
+    </view>
+    <image src='/images/arrow_r.png' class='arrow_r'></image>
+  </view>
+  <view class='msg_item flexible'>
+    <view class='fs_32'>昵称</view>
+    <view class='main'>
+      <input
+        maxlength='8'
+        bindblur='setNickname'
+        bindconfirm='setNickname'
+        value='{{nickname}}'
+      ></input>
+    </view>
+    <image src='/images/arrow_r.png' class='arrow_r'></image>
+  </view>
+</view>
+
+<view catchtap='uploadAvatar'>
+  <template is='bottomBtn' data='{{text: "保存"}}'></template>
+</view>

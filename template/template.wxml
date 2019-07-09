@@ -1,0 +1,213 @@
+<!-- 底部操作按钮模板 -->
+<template name='bottomBtn'>
+  <view class='btn_wrapper flexible'>
+    <view>{{text}}</view>
+  </view>
+</template>
+
+<template name='avatarMsg'>
+  <view class='avatar_container flexible'>
+    <view>
+      <image src='{{avatar}}' class='person'></image>
+    </view>
+    <view class='ac_msg'>
+      <view class='ac_name'>{{name}}</view>
+      <view class='ac_labels flexible'>
+        <block wx:for='{{labels}}' wx:key='{{index}}'>
+          <view wx:if='{{item}}'>{{item}}</view>
+        </block>
+      </view>
+      <view class='flexible'>
+        <view class='active_state'>{{activeState}}</view>
+        <view class='distance_wrapper flexible' wx:if='{{distance}}'>
+          <image src='/images/icon-location.png' class='location_icon'></image>
+          <view>{{distance}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='activityItem'>
+  <view>
+    <view class='act_detail flexible'>
+      <image src='{{PosterImage}}' mode='aspectFill' class='act_bg'></image>
+      <view class='act_msg flexible'>
+        <view class='act_name fs_32'>
+          <view
+            class='title {{IsStateText == "已结束" || IsStateText == "已取消" ? "color_l" : ""}}'
+          >{{Title}}</view>
+          <view class='attempt_num fs_24 sp_b'>
+            <view
+              class='{{IsStateText == "已结束" || IsStateText == "已取消" ? "color_l" : ""}}'
+            >{{PersonNumberText}}</view>
+            <view 
+              class='{{IsStateText == "已结束" || IsStateText == "已取消" ? "color_l" : ""}}'
+            >{{IsStateText}}</view>
+          </view>
+        </view>
+        <view class='flexible date_place'>
+          <view class='flexible'>
+            <view>{{DateTimeText}}</view>
+            <view class='place'>{{Place}}</view>
+          </view>
+          <view class='costs'>{{PriceText}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='interItem'>
+  <view class='inter_item'>
+    <view class='inter_person flexible border_bottom'>
+      <image src='{{UserSimple.HeadImage}}' class='avatar'></image>
+      <view class='avatar_labels'>
+        <view class='avatar_name_l fs_32'>{{UserSimple.NickName}}</view>
+        <view>
+          <text>{{UserSimple.City}}</text>
+          <text class='vertical_line'>|</text>
+          <text>{{UserSimple.Age}}</text>
+          <text class='vertical_line'>|</text>
+          <text>{{UserSimple.Education}}</text>
+        </view>
+      </view>
+      <view class='inter_time fs_22'>{{CreateTimeText}}</view>
+    </view>
+    <view class='inter_qs_ask'>
+      <view class='question'>
+        <view wx:if='{{show}}' class='act_name fs_32 d'>活动：{{ActivityTitle}}</view>
+        <view class='flexible history_comment'>
+          <view class='colored_yellow'>{{text}}</view>
+          <view class='fs_32'>{{Contents}}</view>
+        </view>
+      </view>
+      <!-- <view class='answer_list'>
+        <view class='answer_item'>
+          <view class='person_answer fs_30'>野外烧烤 回复 隔壁老王</view>
+          <view class='text fs_30'>不好意思，没票了，over</view>
+        </view>
+        <view class='answer_item'>
+          <view class='person_answer fs_30'>隔壁老王 回复 野外烧烤</view>
+          <view class='text fs_30'>好的我知道了</view>
+        </view>
+
+        <view class='arrow_top'></view>
+      </view> -->
+    </view>
+  </view>
+</template>
+
+<template name='400'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>拒绝</view>
+</template>
+
+<template name='500'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>通过</view>
+</template>
+
+<template name='600'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>签到</view>
+</template>
+
+<template name='700'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>群聊</view>
+</template>
+
+<template name='800'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>群聊</view>
+</template>
+
+<template name='900'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>报名者
+  <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+</view>
+</template>
+
+<template name='1000'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>活动咨询
+    <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+</view>
+</template>
+
+<template name='1100'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>撤销审核</view>
+</template>
+
+<template name='1200'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>{{text}}</view>
+</template>
+
+<template name='1300'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>立即支付</view>
+</template>
+
+<template name='1400'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>立即评价</view>
+</template>
+
+<template name='1500'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+    <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+</view>
+</template>
+
+<template name='1600'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+</view>
+</template>
+
+<template name='1700'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+  </view>
+</template>
+
+<template name='1800'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+  </view>
+</template>
+
+<template name='1900'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+  </view>
+</template>
+
+<template name='2000'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+  </view>
+</template>
+
+<template name='2100'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>嘉宾互选
+      <view class='red_dot' wx:if='{{value}}'>{{value > 99 ? 99 : value}}</view>
+  </view>
+</template>
+
+<template name='2200'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>群聊</view>
+</template>
+
+<template name='2300'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>群聊</view>
+</template>
+
+<template name='2400'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>聊一聊</view>
+</template>
+
+<template name='2700'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>分享有奖</view>
+</template>
+
+<template name='2800'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>取消报名</view>
+</template>
+
+<template name='2900'>
+  <view class='arrived_state {{lastItem ? "last_item" : ""}}'>退款</view>
+</template>

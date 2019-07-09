@@ -1,0 +1,85 @@
+<import src='../../template/template.wxml' />
+<import src='../../template/share/share.wxml' />
+<import src='../../template/showModal/showModal.wxml' />
+
+<!-- 顶部切换类型栏 -->
+<!-- <view class='act_labels flexible'> -->
+<scroll-view class='act_labels' scroll-x='true'>
+  <block wx:for='{{labels}}' wx:key='{{index}}'>
+    <view data-index='{{item.state}}' catchtap='changeActivityLabel' class='{{item.state == curIndex ? "choosed" : ""}} fs_30'>{{item.text}}</view>
+  </block>
+</scroll-view>
+<!-- </view> -->
+
+<scroll-view
+  style='height: {{height}}rpx'
+  scroll-y
+  class='activity_item' 
+  bindscrolltolower='getActivityList'
+>
+  <view class='no_data' wx:if='{{noMore && !activityList.length}}'>暂无活动</view>
+  <block wx:for='{{activityList}}' wx:key='{{index}}'>
+    <view class='container'>
+      <view
+        data-id='{{item.EnrollId}}'
+        class='act_detail flexible'
+        catchtap='navigateToDetail'
+      >
+        <image src='{{item.Activity.PosterImage}}' class='act_bg' lazy-load='true'></image>
+        <view class='act_msg act_msg_text'>
+            <view class='flexible act_name_wrapper'>
+              <view class='act_name act_name_text'>{{item.Activity.Title}}</view>
+              <view catchtap='deleteActivityItem' class='del_operation'>
+                <image
+                  src='/images/delete_icon.png'
+                  class='delete_icon'
+                  data-index='{{index}}'
+                  data-id='{{item.EnrollId}}'
+                  wx:if='{{item.IsDeleteButton == 1}}'
+                ></image>
+              </view>
+            </view>
+            <view class='flexible between'>
+              <view class='attempt_num'>{{item.Activity.PersonNumberText}}</view>
+              <view class='state ac_state'>{{item.IsStateText}}</view>
+            </view>
+            <view class='date_place flexible'>
+              <view>{{item.Activity.DateTimeText}}</view>
+              <view class='place'>{{item.Activity.Place}}</view>
+              <view class='costs cost_text'>{{item.Activity.PriceText}}</view>
+            </view>
+        </view>
+      </view>
+      <view class='operation_btn flexible' wx:if='{{item.ClickButton.length}}'>
+        <block wx:for='{{item.ClickButton}}' wx:key='{{index}}' wx:for-item='i'>
+          <view
+            class='tap_buttons {{item.ClickButton.length - 1 == index ? "y" : ""}}' catchtap='tapButtons'
+            data-code='{{i.Key}}'
+            data-activityid='{{item.Activity.ActivityId}}' 
+            data-enrollid='{{item.EnrollId}}'
+            data-cost='{{item.TicketMoney}}'
+            data-paynumber='{{item.EnrollSerialNumbr}}'
+            data-chatgroupid='{{item.Activity.GroupChatId}}'
+          >
+            <template is='{{i.Key}}' data='{{text: i.Value}}'/>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if='{{noMore && activityList.length}}' class='no_data'>已经到底了~</view>
+</scroll-view>
+
+<view
+  wx:if='{{showShareImg}}'
+  class='{{showShareImg ? "show_share" : "hide_share"}}'
+>
+  <template
+    is='showShare'
+    data='{{text: shareInfo.RewardAbstract, imgurl: shareInfo.QrCodeUrl}}'/>
+</view>
+
+<view wx:if='{{showShareContent}}'>
+  <template is='showModal' data='{{content}}'/>
+</view>

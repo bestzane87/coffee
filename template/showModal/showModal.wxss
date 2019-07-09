@@ -1,0 +1,37 @@
+/* template/showModal/showModal.wxss */
+.modal_container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 999999999999999999999;
+}
+.modal_wrapper {
+  width: 680rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  position: absolute;
+  left: 50%;
+  padding: 60rpx 50rpx 0;
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  top: 120rpx;
+}
+.modal_footer {
+  height: 100rpx;
+  display: flex;
+  border-top: 1rpx solid rgba(238,238,238,1);
+  margin-top: 60rpx;
+}
+.modal_footer>view {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7A67FB;
+}
+.share_content {
+  margin-top: 10rpx;
+}

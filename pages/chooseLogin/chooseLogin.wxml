@@ -1,0 +1,25 @@
+<view>
+  <view class='logo_container'>
+    <image src='/images/icon-72.png' class='logo_icon'></image>
+    <view class='fs_36'>约杯咖啡</view>
+  </view>
+
+  <view>
+    <view class='fs_34' class='auth_text'>请微信授权登录后使用</view>
+    <button
+      class='auth_btn'
+      open-type='getPhoneNumber'
+      bindgetphonenumber="getPhoneNumber"
+    >
+      <image src='/images/wechat_w.png' class='wechat_w'></image>
+      <text class='fs_36'>微信授权登录</text>
+    </button>
+  </view>
+</view>
+
+<view class='bottom_text fs_24'>
+  <text>已阅读和同意</text>
+  <text class='color_b' catchtap='navigateToServices'>约杯咖啡服务协议</text>
+  <text>和</text>
+  <text class='color_b' catchtap='navigateToProtect'>个人信息保护政策</text>
+</view>

@@ -1,0 +1,110 @@
+<import src='/template/template.wxml' />
+
+
+<view class='avatar_wrapper flexible'>
+  <view data-id='{{sponsorMsg.UserId}}' catchtap='getUserDeial'>
+    <image class='avatar' src='{{sponsorMsg.HeadImage}}'></image>
+  </view>
+  <view data-id='{{sponsorMsg.UserId}}' catchtap='getUserDeial' class="color_f avatar_name">{{sponsorMsg.NickName}}</view>
+  <view class='flexible fans_act'>
+    <view data-num='{{sponsorMsg.FansNumber}}' catchtap='navigateToFansList' class="color_f">粉丝 {{sponsorMsg.FansNumber}}</view>
+    <view class="color_f">活动 {{sponsorMsg.ActivityNumber}}</view>
+  </view>
+
+  <view catchtap='handleFocus' class='focus_btn color_f'>
+    {{sponsorMsg.IsFollow === '1' ? '已关注' : '+ 关注'}}
+  </view>
+  <image src='{{sponsorMsg.HeadImage}}' class='filter_img'></image>
+</view>
+
+<view class='intro'>
+  <view class='intro_title'>主办方介绍</view>
+  <view class='intro_detail'>
+    <view class='first_line'>{{firstLineText}}</view>
+    <view class='second_line flexible' wx:if='{{secondLineText}}'>
+      <view>{{secondLineText}}</view>
+      <view wx:if='{{secondLineText.length === 20}}' bindtap='showAllText' class='show_all'> ... 展开</view>
+    </view>
+  </view>
+</view>
+
+
+<view class='position_wrapper'>
+
+<view style='position: {{position}}; top: {{top}}px; z-index: 10000000' class='act_eva_label flexible' id='top_wrapper'>
+  <view data-label='act' bindtap='handleChangeLabel' class='{{choosedAct ? "choosed" : "unchoosed"}}'>活动</view>
+  <view data-label='eva' bindtap='handleChangeLabel' class='{{!choosedAct ? "choosed" : "unchoosed"}}'>历史评价</view>
+</view>
+
+
+
+
+  <view wx:if='{{choosedAct}}'>
+    <!-- <scroll-view
+    scroll-y
+    bindscrolltolower='getMoreActivity'
+  > -->
+    <block wx:for='{{activityList}}' wx:key='{{index}}'>
+      <view catchtap='getActivityDetail' data-id='{{item.ActivityId}}'>
+        <template is='activityItem' data='{{...item}}' />
+      </view>
+    </block>
+    <view class='no_data fs_28 color_light' wx:if='{{noMoreActivity}}'>已经到底了~</view>
+    <!-- </scroll-view> -->
+  </view>
+
+  <view wx:else>
+    <scroll-view scroll-y bindscrolltolower='getMoreComment'>
+      <block wx:for='{{commentList}}' wx:key='{{index}}'>
+
+
+
+        <view class='inter_item'>
+          <view class='inter_person flexible border_bottom'>
+            <image src='{{item.UserSimple.HeadImage + "?x-oss-process=image/resize,w_150"}}' class='avatar'></image>
+            <view class='avatar_labels'>
+              <view class='avatar_name_l fs_32'>{{item.UserSimple.NickName}}</view>
+              <view>
+                <text>{{item.UserSimple.City}}</text>
+                <text class='vertical_line'>|</text>
+                <text>{{item.UserSimple.Age}}</text>
+                <text class='vertical_line'>|</text>
+                <text>{{item.UserSimple.Education}}</text>
+              </view>
+            </view>
+            <view class='inter_time fs_22'>{{item.CreateTimeText}}</view>
+          </view>
+          <view data-id='{{item.ActivityId}}' catchtap='getActivityDetail' class='inter_qs_ask'>
+            <view class='question'>
+              <view class='act_name fs_32 d'>活动：{{item.ActivityTitle}}</view>
+              <view class='flexible history_comment'>
+                <view class='colored_yellow'>评</view>
+                <view class='fs_32'>{{item.Contents}}</view>
+              </view>
+            </view>
+            <view class='answer_list' wx:if='{{item.EvaluateReplyList.length}}'>
+              <block wx:for='{{item.EvaluateReplyList}}' wx:for-item='eva' wx:key='{{item}}'>
+                <view class='answer_item'>
+                  <view class='person_answer fs_30'>{{eva.ReplyUserNickName}} 回复 {{eva.QuestionUserNickName}}</view>
+                  <view class='text fs_30 flexible answer_list_text'>
+                    <view class='answer_list_item'>{{eva.Contents}}</view>
+                  </view>
+                </view>
+              </block>
+
+              <view class='arrow_top'></view>
+            </view>
+          </view>
+        </view>
+
+
+
+
+
+
+
+      </block>
+      <view class='no_data fs_28 color_light' wx:if='{{noMoreComment}}'>已经到底了~</view>
+    </scroll-view>
+  </view>
+</view>

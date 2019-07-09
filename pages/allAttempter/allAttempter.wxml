@@ -1,0 +1,39 @@
+<import src='/template/template.wxml' />
+
+<scroll-view
+  style='height: {{height}}rpx'
+  bindscrolltolower='getChooseList'
+  scroll-y class='user_container flexible'
+>
+  <view
+    class='search_wrapper' 
+    catchtap='navigateToEnrollerSearch'
+  >
+    <view class='search_btn flexible fs_30'>搜索</view>
+  </view>
+  <view class='tips fs_28' wx:if='{{chooseList.length}}'>请选择您希望进一步了解的TA,最多可选{{count}}名。</view>
+  <block wx:for='{{chooseList}}' wx:key='{{index}}'>
+    <view data-index='{{index}}' data-id='{{item.UserSimple.UserId}}' catchtap='chooseUser' class='user_item flexible'>
+      <view
+        catchtap='getAvatarDetail'
+        data-id='{{item.UserSimple.UserId}}'
+        class='avatar_wrapper'
+      >
+        <image class='avatar' src='{{item.UserSimple.HeadImage}}'></image>
+        <view
+          class='enroll_text fs_22 {{item.EnrollSex == "男士" ? "color_g" : ""}}'
+        >{{item.EnrollCodeText}}</view>
+      </view>
+      <view class='user_msg'>
+        <view class='fs_32'>{{item.UserSimple.NickName}}</view>
+        <view class='user_label flexible'>
+          <view wx:if='{{item.UserSimple.Age}}'>{{item.UserSimple.Age}}</view>
+          <view wx:if='{{item.UserSimple.Education}}'>{{item.UserSimple.Education}}</view>
+          <view wx:if='{{item.UserSimple.Profession}}'>{{item.UserSimple.Profession}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class='no_more fs_24 color_light' wx:if='{{noMore && chooseList.length}}'>已经到底了~</view>
+  <view class='no_data fs_24 color_light' wx:if='{{noMore && !chooseList.length}}'>暂无可选嘉宾~</view>
+</scroll-view>

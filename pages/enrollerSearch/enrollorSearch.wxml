@@ -1,0 +1,62 @@
+<import src='../../template/template.wxml'/>
+
+<view class='search_container'>
+  <view class='condition_item flexible border_bottom'>
+    <view class='condition_name flexible'>
+      <view class='fs_32'>年龄</view>
+    </view>
+    <view class='condition_msg flexible'>
+      <picker
+        mode='multiSelector' 
+        range='{{[ageArr, ageArr]}}'
+        bindchange='handleAgeChange'
+      >
+        <view class='flexible picker_item'>
+          <view class='fs_30' wx:if='{{ageText}}'>{{ageText}}</view>
+          <image src='/images/arrow_r.png' class='arrow_r'></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class='condition_item flexible border_bottom'>
+    <view class='condition_name flexible'>
+      <view class='fs_32'>身高</view>
+    </view>
+    <view class='condition_msg flexible'>
+      <picker
+        mode='multiSelector'
+        range='{{[heightArr, heightArr]}}'
+        bindchange='handleHeightChange'
+      >
+        <view class='flexible picker_item'>
+          <view class='fs_30' wx:if='{{heightText}}'>{{heightText}}</view>
+          <image src='/images/arrow_r.png' class='arrow_r'></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+
+  <view class='condition_item flexible'>
+    <view class='condition_name flexible'>
+      <view class='fs_32'>学历</view>
+    </view>
+    <view class='condition_msg flexible'>
+      <picker
+        mode='selector'
+        range='{{eduArr}}'
+        bindchange='handleEduChange'
+      >
+        <view class='flexible picker_item'>
+          <view class='fs_30' wx:if='{{eduText}}'>{{eduText}}</view>
+          <image src='/images/arrow_r.png' class='arrow_r'></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<view catchtap='ensureSearch'>
+  <template is='bottomBtn' data='{{text: "开始搜索"}}'></template>
+</view>

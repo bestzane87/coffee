@@ -1,0 +1,18 @@
+<import src='/template/template.wxml'/>
+
+<textarea
+  focus='{{focusTextarea}}'
+  bindconfirm='textareaChange'
+  bindblur='textareaChange'
+  placeholder='这次活动您还满意吗？说说活动的精彩和不足吧'
+></textarea>
+
+<view
+  catchtap='saveComment'
+  class='btn_wrapper flexible'
+>
+  <button
+    hover-class='same'
+    disabled='{{tapState}}'
+  >保存</button>
+</view>

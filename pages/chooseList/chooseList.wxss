@@ -1,0 +1,66 @@
+@import '/template/template.wxss';
+
+.choose_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 4rpx;
+}
+.choose_item {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  margin-top: 24rpx;
+  width:702rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius:9rpx;
+}
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+}
+.avatar_container {
+  border: none;
+}
+.avatar_cover {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 120rpx;
+  background:rgba(0,0,0,.65);
+  z-index: 99;
+}
+.avatar_wrapper {
+  position: relative;
+}
+.enroll_text {
+  z-index: 999;
+  position: absolute;
+  left: 5rpx;
+  bottom: 0;
+  width: 110rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #fff;
+  height: 30rpx;
+  background: #FF8A8A;
+  border-radius: 8rpx;
+}
+.avatar_container {
+  width: 290rpx;
+  justify-content: space-between;
+}
+.text_wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text_wrapper view {
+  color: #333;
+}
+.female_label {
+  background: #38CDED;
+}

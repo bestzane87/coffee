@@ -1,0 +1,118 @@
+<import src='/template/template.wxml' />
+
+<!-- 头部类型筛选及下拉框 -->
+<view class='top_container'>
+  <view class='top_bar flexible'>
+    <view class='type_title' catchtap='toggleList' data-type='allSex'>
+      <view class='{{checked === "allSex" ? "checked" : ""}}'>
+        {{allSexText}}</view>
+      <image src='/images/arrow.png' class='arrow_top_l'></image>
+    </view>
+
+    <view class='type_title' catchtap='toggleList' data-type='allEnrollState'>
+      <view class='{{checked === "allEnrollState" ? "checked" : ""}}'>
+        {{allEnrollStateText}}</view>
+      <image src='/images/arrow.png' class='arrow_top_l'></image>
+    </view>
+
+    <view class='type_title' catchtap='toggleList' data-type='ticketType' data-list='{{ticketList}}'>
+      <view class='{{checked === "ticketType" ? "checked" : ""}}'>
+        {{ticketTypeText}}</view>
+      <image src='/images/arrow.png' class='arrow_top_l'></image>
+    </view>
+
+  </view>
+  <view class='queue_item' wx:if='{{showMenu}}'>
+    <block wx:for='{{typeList}}' wx:key='{{index}}' wx:for-index='key' wx:for-item='item'>
+      <view data-title='{{checked}}' catchtap='chooseType' data-name='{{item}}' data-index='{{key}}' class='list_item'>{{item}}</view>
+    </block>
+  </view>
+</view>
+
+
+
+
+
+
+
+<scroll-view
+  style='height: {{height}}rpx'
+  scroll-y
+  bindscrolltolower='getApplicantsList'
+>
+  <view class='number fs_28'>
+    <view>{{dataArr[0]}}</view>
+    <view>{{dataArr[1]}}</view>
+  </view>
+  <view>
+    <block wx:for='{{dataList}}' wx:key='{{index}}'>
+      <view class='applicant_wrapper' catchtap='getAvatarDetail' data-enrollid='{{item.EnrollId}}'>
+        <view class='avatar_container flexible'>
+          <view class='avatar_wrapper'>
+            <view
+              wx:if='{{item.EnrollCodeText}}'
+              class='sort_text {{item.EnrollSex === "男士" ? "" : "red"}}'
+              >{{item.EnrollCodeText}}</view>
+            <image src='{{item.UserSimple.HeadImage + "?x-oss-process=image/resize,w_150"}}' class='avatar'></image>
+          </view>
+          <view>
+            <view class='fs_32'>{{item.UserSimple.NickName}}</view>
+            <view class='fs_24 role_name' wx:if='{{item.RoleName}}'>{{item.RoleName}}</view>
+            <view class='ac_labels flexible'>
+              <view wx:if='{{item.UserSimple.Age}}'>{{item.UserSimple.Age}}</view>
+              <view wx:if='{{item.UserSimple.Education}}'>{{item.UserSimple.Education}}</view>
+              <view wx:if='{{item.UserSimple.City}}'>{{item.UserSimple.City}}</view>
+            </view>
+          </view>
+          <view class='ticket_msg'>
+            <view class='fs_24'>{{item.TicketName}}</view>
+            <view class='fs_24'>{{item.TicketMoneyText}}</view>
+          </view>
+          <view class='fs_24'>{{item.IsStateText}}</view>
+        </view>
+
+        <view class='operation_btn flexible' wx:if='{{item.ClickButton.length}}'>
+          <block wx:for='{{item.ClickButton}}' wx:for-item='i' wx:key='{{index}}'>
+            <view
+              class='tap_buttons {{item.ClickButton.length - 1 == index ? "y" : ""}}'
+              catchtap='tapButtons'
+              data-code='{{i.Key}}'
+              data-id='{{item.EnrollId}}'
+              data-activityid='{{activityId}}'
+              data-apnickname='{{item.UserSimple.NickName}}'
+              data-avatarurl='{{item.UserSimple.HeadImage}}'
+              data-userid='{{item.UserSimple.UserId}}'
+              data-chatgroupid='{{item.GroupChatId}}'
+              data-ticketmoney='{{item.TicketMoney}}'
+            >
+              <template is='{{i.Key}}' />
+            </view>
+          </block>
+          <!-- <text catchtap='refundEnroll' data-id='{{item.EnrollId}}'>退款</text> -->
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class='no_data' wx:if='{{noData && dataList.length}}'>已经到底了~</view>
+  <view class='no_data' wx:if='{{noData && !dataList.length}}'>暂无报名者~</view>
+</scroll-view>
+
+<view class='btn_wrapper flexible'>
+  <button class='refund_list' catchtap='navigateToRefund'>批量退款</button>
+  <button open-type='share'>邀请嘉宾</button>
+</view>
+
+<view class='refund_wrapper' wx:if='{{modalShow}}'>
+  <view class='refund_modal'>
+    <view class='operation_content'>
+      <view class='fs_34 p_l_s'>向毕道振退款</view>
+      <view class='fs_34 p_l'>可退金额：￥{{refundMax}}</view>
+      <view class='fs_34 p_l flexible'>实退金额：￥<input type='number' placeholder='{{refundMax}}' class='fs_34 input_refund' bindblur='getRefundMoney' bindconfirm='getRefundMoney' value='{{realRefund}}' placeholder-class='place'/></view>
+    </view>
+    <view class='operation_wrapper flexible'>
+      <view class='fs_36' catchtap='toggleRefundModal'>取消</view>
+      <view class='fs_36' catchtap='confirmRefund'>确定</view>
+    </view>
+  </view>
+</view>

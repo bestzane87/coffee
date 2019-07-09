@@ -1,0 +1,28 @@
+.container {
+  padding: 30rpx 24rpx;
+}
+textarea {
+  width: 100%;
+  height: 450rpx;
+  box-shadow: 0 0 10px rgba(0,0,0,0.14);
+  border-radius: 9rpx;
+  margin-bottom: 24rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.tips {
+  color:rgba(153,153,153,1);
+  font-size: 14px;
+  line-height: 24px;
+}
+.textarea-wrapper {
+  position: relative;
+}
+.text-count {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  color:rgba(51,51,51,1);
+  font-size: 15px;
+}

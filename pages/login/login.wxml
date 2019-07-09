@@ -1,0 +1,37 @@
+<view>
+  <view class='flexible'>
+    <image src='/images/icon-72.png' class='logo'></image>
+  </view>
+  <view class='input_wrapper flexible'>
+    <view>
+      <input type='number' data-type='phone' value='{{phoneNumber}}' class='input_phone' placeholder='请输入手机号' placeholder='请输入手机号' maxlength='11' bindinput='getInputValue'></input>
+    </view>
+    <view class='flexible verify_code_wrapper'>
+      <input type='number' data-type='code' class='input_code' placeholder='请输入短信验证码' bindinput='getInputValue'></input>
+      <button
+        catchtap='getVerifyCode'
+        class='get_code {{time === false ? "" : "white"}}'
+        hover-class='none'
+        disabled='{{time}}'
+      >{{time === false ? '获取验证码' :  '重新获取(' + time + ')'}}</button>
+    </view>
+  </view>
+  <button
+    disabled='{{clickState}}'
+    class='login_btn {{clickState ? "" : "clickable"}}'
+    hover-class='none'
+    open-type='getUserInfo'
+    bindgetuserinfo='getUserInfo'
+  >登录/注册</button>
+  
+  <view class='other_login flexible'>
+    <view class='row_line'></view>
+    <view class='fs_30 other_text'>其他登录方式</view>
+    <view class='row_line'></view>
+  </view>
+
+  <view class='choose_wechat'>
+    <image src='/images/weixin.png' class='wechat_logo'></image>
+    <view class='weixin_text'>微信</view>
+  </view>
+</view>

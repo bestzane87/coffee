@@ -1,0 +1,99 @@
+<view class='user_center_wrapper'>
+  <view
+    wx:if='{{verifyTips}}'
+    class='top_tips'
+    catchtap='navigateToUpdate'
+  >{{verifyTips}}</view>
+  <!-- 个人信息 -->
+  <view
+    catchtap='navigateToUpdate'
+    class='avatar_container flexible'
+    wx:if='{{userMsg}}'
+  >
+    <image
+      mode='aspectFill'
+      src='{{userMsg.HeadImage}}'
+      class='avatar'
+    ></image>
+    <view class='user_detail flexible'>
+      <view class='flexible'>
+        <text class='fs_34'>{{userMsg.NickName}}</text>
+        <block wx:for='{{iconList}}' wx:key='{{index}}'>
+          <image
+            src='{{item}}'
+            class='auth_icon'
+          ></image>
+        </block>
+      </view>
+      <text class='fs_30 user_id'>奇遇号：{{userMsg.QiyuId}}</text>
+    </view>
+    <image src='/images/arrow_r.png' class='arrow_l'></image>
+  </view>
+  <view
+    catchtap='navigateToLogin'
+    class='avatar_container flexible align' 
+    wx:else
+  >
+    <image src='/images/icon-72.png' class='avatar'></image>
+    <view class='user_detail flexible'>
+      <text class='fs_34'>点击登录</text>
+    </view>
+  </view>
+  <!-- 活动管理 -->
+  <view class='activities_container' catchtap='navigateToAllActivities' data-index='0'>
+    <view class='activities_header flexible border_bottom'>
+      <view class='flexible'>
+        <image src='/images/activities.png' class='activity_icon'></image>
+        <text class='fs_32'>活动管理</text>
+      </view>
+      <view class='flexible'>
+        <text class='fs_30 color_light'>全部</text>
+        <image src='/images/arrow_r.png' class='arrow_l'></image>
+      </view>
+    </view>
+    <view class='activity_states flexible'>
+      <view class='state_item flexible' catchtap='navigateToAllActivities' data-index='1'>
+        <view class='circle_red' wx:if='{{verifyNum}}'>{{verifyNum}}</view>
+        <image src='/images/clock.png' class='state_icon_1'></image>
+        <text class='fs_30'>待审核</text>
+      </view>
+      <view class='state_item flexible' catchtap='navigateToAllActivities' data-index='2'>
+        <view class='circle_red' wx:if='{{paymentNum}}'>{{paymentNum}}</view>
+        <image src='/images/purse.png' class='state_icon_2'></image>
+        <text class='fs_30'>待支付</text>
+      </view>
+      <view class='state_item flexible' catchtap='navigateToAllActivities' data-index='3'>
+        <view class='circle_red' wx:if='{{attemptNum}}'>{{attemptNum}}</view>
+        <image src='/images/clock.png' class='state_icon_3'></image>
+        <text class='fs_30'>待签到</text>
+      </view>
+      <view class='state_item flexible' catchtap='navigateToAllActivities' data-index='4'>
+        <view class='circle_red' wx:if='{{evalateNum}}'>{{evalateNum}}</view>
+        <image src='/images/pencel.png' class='state_icon_4'></image>
+        <text class='fs_30'>待评价</text>
+      </view>
+    </view>
+  </view>
+  <!-- 收藏，关注 -->
+  <view class='border_bottom_s'>
+    <view data-page='focusedSponsor' catchtap='navigateToPage' class='my_collections flexible'>
+      <image src='/images/focus.png' class='activity_icon'></image>
+      <view class='fs_32'>我的关注</view>
+      <image src='/images/arrow_r.png' class='arrow_r'></image>
+    </view>
+    <view data-page='collectedActivities' catchtap='navigateToPage' class='my_collections flexible'>
+      <image src='/images/collection.png' class='activity_icon'></image>
+      <view class='fs_32'>我的收藏</view>
+      <image src='/images/arrow_r.png' class='arrow_r'></image>
+    </view>
+  </view>
+
+  <view
+    class='flexible sponsor border_bottom_s'
+    catchtap='toggleSponsor'
+  >
+    <view class='vertical_line'></view>
+    <view class='all_flex'>主办方</view>
+    <image src='/images/arrow_r.png' class='arrow_r'></image>
+  </view>
+</view>

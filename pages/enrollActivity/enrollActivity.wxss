@@ -1,0 +1,129 @@
+@import '/template/template.wxss';
+
+/* pages/enrollActivity/enrollActivity.wxss */
+.padding_b {
+  padding-bottom: 160rpx;
+}
+input {
+  font-size: 30rpx;
+  width: 326rpx;
+  text-align: right;
+  padding-right: 24rpx;
+}
+.condition_wrapper {
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  width: 702rpx;
+  margin: 24rpx auto 0; 
+  box-shadow: 0px 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius: 9rpx;
+  flex-wrap: wrap;
+}
+.condition_item {
+  height: 100rpx;
+  width: 100%;
+}
+.condition_item:last-child {
+  border: none;
+}
+.condition_required {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  color: #E11F1A;
+}
+.condition_msg {
+  flex: 1;
+  justify-content: flex-end;
+}
+picker {
+  flex: 1;
+  line-height: 100%;
+}
+.picker_item {
+  justify-content: flex-end;
+}
+.picker_item image {
+  margin-left: 24rpx;
+}
+.input_placeholder {
+  color:#999;
+}
+.phone_number {
+  padding-right: 24rpx;
+  font-size: 30rpx;
+}
+.checkbox_container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 384rpx;
+  width: 100%;
+  z-index: 9999999999999;
+  background: #fff;
+}
+.choose_items_title {
+  padding: 0 24rpx;
+  align-items: center;
+  height: 108rpx;
+  border-bottom: 1rpx solid rgba(153,153,153,.4);
+}
+.center_text {
+  flex: 1;
+  text-align: center;
+}
+.checkbox_item {
+  padding: 7rpx 10rpx;
+  line-height: 100%;
+  border: 1rpx solid rgba(153,153,153,.7);
+  border-radius: 6rpx;
+  display: inline-block;
+  margin: 0 28rpx 10rpx 0;
+}
+.choose_items_wrapper {
+  padding: 10rpx 24rpx 24rpx;
+  height: 275rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.checkbox_wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background:rgba(0,0,0,.4);
+  height: 100vh;
+  width: 100vw;
+  z-index: 999999999999999999;
+}
+.cover_bg {
+  height: calc(100vh - 384rpx);
+}
+.choosed {
+  background: #896DF8;
+  color: #fff;
+  border: 1rpx solid #896DF8;
+}
+.overflow {
+  width: 440rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+.btn_wrapper>button {
+  width: 669rpx;
+  height: 96rpx;
+  background: linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  box-shadow: 0rpx 3rpx 8rpx 0rpx rgba(0, 0, 0, 0.16);
+  border-radius: 48rpx;
+  line-height: 96rpx;
+  text-align: center;
+  color: rgba(255,255,255,1);
+  font-size: 30rpx;
+}
+button[disabled] {
+  color: #fff !important;
+}
+.btn_wrapper>.click {
+  background: #fff;
+  color: #999 !important;
+}

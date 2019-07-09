@@ -1,0 +1,46 @@
+.letter_wrapper {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container view {
+  color: #999;
+}
+.letter_label {
+  padding: 5rpx 20rpx;
+  background: #eee;
+}
+.city_item {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  width: 710rpx;
+  margin: 0 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+scroll-view {
+  display: flex;
+}
+.city_wrapper {
+  padding: 15rpx 20rpx;
+}
+.city_per {
+  border-radius: 5rpx;
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+  border: 1rpx solid #555;
+  margin-right: 20rpx;
+}
+scroll-view {
+  height: 1206rpx;
+}
+.city_wrapper {
+  flex-wrap: wrap;
+}

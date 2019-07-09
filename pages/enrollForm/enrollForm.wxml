@@ -1,0 +1,55 @@
+<import src='/template/template.wxml'/>
+<view class='wrapper'>
+  <view class='form_container'>
+    <!-- 前三项为默认必填选项 -->
+    <view class='form_item flexible'>
+      <view>姓名</view>
+      <view>必填</view>
+    </view>
+    <view class='form_item flexible'>
+      <view>手机号</view>
+      <view>必填</view>
+    </view>
+    <view class='form_item flexible'>
+      <view>性别</view>
+      <view>必填</view>
+    </view>
+
+    <block wx:for='{{formItemList}}' wx:key='{{index}}'>
+      <view class='form_item flexible'>
+        <image src='/images/minus.png'></image>
+        <view>{{item.itemName}}</view>
+        <view>{{item.required ? '必填' : '选填'}}</view>
+        <view class='{{item.required ? "circle_full" : ""}} circle'></view>
+      </view>    
+    </block>
+    
+    <view class='add_form_item flexible' bindtap='toggleCover'>
+      <image src='/images/add.png'></image>
+      <view>添加表单项</view>
+    </view>
+  </view>
+</view>
+
+<view class='cover_wrapper' wx:if='{{coverState}}'>
+  <view class='cover_container'>
+    <view class='cover_header flexible'>
+      <!-- <view>取消</view> -->
+      <view class='title'>请选择表单项</view>
+      <view bindtap='toggleCover'>保存</view>
+    </view>
+    <view class='choose_form_item flexible'>
+      <block wx:for='{{formItemList}}' wx:key='{{index}}'>
+        <view
+          data-id='{{item.itemId}}'
+          data-boolean='{{item.required}}'
+          bindtap='toggleLabelItem'
+          class='create_form_item {{item.required ? "bg_colored" : ""}}'
+        >{{item.itemName}}</view>
+      </block>
+      <view class='create_form_item'>自定义+</view>
+    </view>
+  </view>
+</view>
+
+<template is='bottomBtn' data='{{...btnObj}}'/>

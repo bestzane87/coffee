@@ -1,0 +1,16 @@
+@import '../../template/template.wxss';
+@import '../enrollActivity/enrollActivity.wxss';
+
+.search_container {
+  width:702rpx;
+  height:303rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius:9rpx;
+  box-sizing: border-box;
+  margin: 24rpx auto;
+  padding: 0 30rpx;
+}
+.border_bottom {
+  border-bottom: 1rpx solid rgba(153,153,153,.3) !important;
+}

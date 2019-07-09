@@ -1,0 +1,10 @@
+<view>
+  <!-- <view class='top_tips'>点击中心区域选择头像</view> -->
+  <image-cropper id="image-cropper" disable_height='{{true}}' disable_width='{{true}}' limit_move="{{true}}" disable_rotate="{{true}}" width="{{250}}" height="{{250}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut">
+  </image-cropper>
+  
+  <view class='bottom_wrapper'>
+    <view catchtap='cancelChoose'>取消</view>
+    <view catchtap='cutImg'>裁剪</view>
+  </view>
+</view>

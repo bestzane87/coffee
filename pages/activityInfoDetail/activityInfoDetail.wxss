@@ -1,0 +1,12 @@
+/* pages/activityInfoDetail/activityInfoDetail.wxss */
+@import "../wxParse/wxParse.wxss";
+
+.content_wrapper {
+  padding: 24rpx;
+}
+
+image {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

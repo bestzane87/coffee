@@ -1,0 +1,41 @@
+scroll-view {
+  height: 1206rpx;
+}
+.sponsor_wrapper {
+  padding: 26rpx 24rpx;
+  align-items: flex-start;
+  border-bottom: 22rpx solid rgba(238,238,238,1);
+}
+.fans_icon, .act_icon {
+  width: 23rpx;
+  height: 23rpx;
+}
+.avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
+}
+.slogan {
+  width: 540rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 15rpx 0 30rpx;
+}
+.sponsor_msg {
+  margin-left: 24rpx;
+}
+.fs_text {
+  margin: 0 20rpx 0 15rpx;
+}
+.fans_wrapper {
+  margin-right: 58rpx;
+}
+.sponsor_name {
+  padding-top: 15rpx;
+}
+.no_more {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}

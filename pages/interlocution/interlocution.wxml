@@ -1,0 +1,102 @@
+<import src='/template/template.wxml'/>
+<div catchtap='hideOperation'>
+  <scroll-view
+    style='height: {{height}}rpx'
+    scroll-y
+    bindscrolltolower='getInitialQuestions'
+  >
+    <view class='no_data' wx:if='{{noMore && !askList.length}}'>暂无活动咨询</view>
+    <block wx:for='{{askList}}' wx:key='{{index}}'>
+      <view class='inter_item'>
+        <view class='inter_person flexible border_bottom'>
+          <image
+            catchtap='getUserDetail'
+            data-id='{{item.UserSimple.UserId}}'
+            src='{{item.UserSimple.HeadImage}}'
+            class='avatar'
+          ></image>
+          <view class='avatar_labels'>
+            <view class='avatar_name_l fs_32'>{{item.UserSimple.NickName}}</view>
+            <view wx:if='{{item.UserSimple.City && item.UserSimple.Age && item.UserSimple.Education}}'>
+              <text>{{item.UserSimple.City}}</text>
+              <text class='vertical_line'>|</text>
+              <text>{{item.UserSimple.Age}}</text>
+              <text class='vertical_line'>|</text>
+              <text>{{item.UserSimple.Education}}</text>
+            </view>
+          </view>
+          <view class='inter_time fs_22'>{{item.CreateTimeText}}</view>
+        </view>
+        <view class='inter_qs_ask'>
+          <view class='question'>
+            <view wx:if='{{showAsk}}' class='act_name fs_32'>活动：{{item.ActivityTitle}}</view>
+            <view class='flexible history_comment'>
+              <view class='colored_yellow'>问</view>
+              <view class='fs_32 questions'>{{item.Contents}}</view>
+              <view
+                wx:if='{{sponserId == userMsg.UserId}}'
+                class='operation_wrapper'
+                data-index='{{index}}'
+                catchtap='toggleOperations'
+              >
+                <view class='flexible operateions' wx:if='{{curOperations == index}}'>
+                  <view
+                    data-questionid='{{item.QuestionId}}'
+                    data-userid='{{item.UserSimple.UserId}}'
+                    class='fs_24'
+                    catchtap='deleteQuestion'
+                  >删除</view>
+                  <view class='line_vertical'></view>
+                  <view
+                    data-questionid='{{item.QuestionId}}'
+                    data-userid='{{item.UserSimple.UserId}}'
+                    class='fs_24' 
+                    catchtap='answerQuestion'
+                  >回复</view>
+                </view>
+                <image src='/images/operate.png' class='operate_icon'></image>
+              </view>
+            </view>
+          </view>
+          <!-- 回复区域 -->
+          <view class='answer_list' wx:if='{{item.ActivityReplyList.length}}'>
+            <block wx:for='{{item.ActivityReplyList}}' wx:for-index ='idx' wx:for-item='i' wx:key='{{idx}}'>
+              <view class='answer_item'>
+                <view class='person_answer fs_30'>{{i.ReplyUserNickName}} 回复 {{i.QuestionUserNickName}}</view>
+                <view class='text fs_30 flexible'>
+                  <view class='answer_contant'>{{i.Contents}}</view>
+                  <view
+                    wx:if='{{sponserId == userMsg.UserId}}'
+                    catchtap='deleteReplyItem'
+                    data-replyId='{{i.ReplyId}}'
+                    class='delete_answer fs_24'
+                  >删除</view>
+                </view>
+              </view>
+            </block>
+
+            <view class='arrow_top'></view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class='no_data' wx:if='{{noMore && askList.length}}'>已经到底了~</view>
+  </scroll-view>
+
+
+  <view class='bottom_input_wrapper flexible' wx:if='{{focusInput}}'>
+    <input
+      focus='{{focusInput}}'
+      placeholder-class='input_placeholder'
+      placeholder='回复'
+      class='fs_32'
+      bindchange='confirmAnswer'
+    ></input>
+    <view class='commit' catchtap='commitAnswer'>提交</view>
+  </view>
+
+  <view wx:else catchtap='navigateToTextare'>
+    <template is='bottomBtn' data='{{text: "立即咨询"}}'></template>
+  </view>
+</div>

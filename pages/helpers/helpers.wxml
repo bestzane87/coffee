@@ -1,0 +1,6 @@
+<view>
+  <view class='award flexible' catchtap='navigateToAward'>
+    <view class='label_text fs_32'>抽奖</view>
+    <image src='/images/arrow_r.png' class='arrow_r'></image>
+  </view>
+</view>

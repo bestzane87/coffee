@@ -1,0 +1,34 @@
+<scroll-view
+  style='height: {{height}}rpx'
+  class="visitor-wrapper"
+  scroll-y
+  bindscrolltolower='getFansList'
+>
+  <view
+    wx:if='{{fansCount != 0}}'
+    class="visitor-title">当前粉丝人数：{{fansCount}}</view>
+  <view class='white_line'></view>
+  <block wx:for='{{fansList}}' wx:key='{{index}}'>
+    <view class="visitor-item wrapper">
+      <view class="wrapper">
+        <image src='{{item.UserSimple.HeadImage + "?x-oss-process=image/resize,w_150"}}' class="visitor-avatar"></image>
+      </view>
+      <view class="visitor-detail">
+        <view class="visitor-name">{{item.UserSimple.NickName}}</view>
+        <view class="wrapper flex-start">
+          <view wx:if='{{item.UserSimple.Age}}'>{{item.UserSimple.Age}}</view>
+          <view wx:if='{{item.UserSimple.Education}}'>{{item.UserSimple.Education}}</view>
+          <view wx:if='{{item.UserSimple.City}}'>{{item.UserSimple.City}}</view>
+        </view>
+        <view class="viewed-num wrapper">
+          <view class="active-time">{{item.ActiveText}}</view>
+          <view wx:if='{{item.DistanceText}}' class="wrapper location-wrapper">
+            <image src='/images/icon-location.png' class="location-icon"></image>
+            <view>{{item.DistanceText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class='no_data' wx:if='{{noMore}}'>已经到底了~</view>
+</scroll-view>

@@ -1,0 +1,2 @@
+/* pages/allAttempter/allAttempter.wxss */
+@import '../mutualChoose/mutualChoose.wxss';

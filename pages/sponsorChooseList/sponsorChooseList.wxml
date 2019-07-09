@@ -1,0 +1,73 @@
+<!-- 顶部切换类型栏 -->
+<!-- <view class='act_labels flexible'> -->
+<div class='act_labels'>
+  <block wx:for='{{labels}}' wx:key='{{index}}'>
+    <view data-index='{{item.state}}' catchtap='changeActivityLabel' class='{{item.state == curIndex ? "choosed" : ""}} fs_30'>{{item.text}}</view>
+  </block>
+  <view class='bottom_line_ss'></view>
+</div>
+
+<scroll-view
+  style='height: {{height}}rpx'
+  scroll-y
+  bindscrolltolower='getChooseList'
+>
+
+  <view class='fs_28 num'>数量：{{count}}</view>
+
+  <view class='choose_list'>
+
+    <block wx:for='{{chooseList}}' wx:key='{{index}}' wx:if='{{curIndex == 4}}'>
+      <view data-index='{{index}}' data-id='{{item.UserSimple.UserId}}' class='user_item flexible'>
+        <view class='avatar_wrapper'>
+          <image class='avatar' src='{{item.UserSimple.HeadImage}}'></image>
+          <view class='enroll_text fs_22 {{item.FromEnrollSex == "男士" ? "female_label" : ""}}'>{{item.FromEnrollCodeText}}</view>
+        </view>
+        <view class='user_msg'>
+          <view class='fs_32'>{{item.UserSimple.NickName}}</view>
+          <view class='user_label flexible'>
+            <view wx:if='{{item.UserSimple.Age}}'>{{item.UserSimple.Age}}</view>
+            <view wx:if='{{item.UserSimple.Education}}'>{{item.UserSimple.Education}}</view>
+            <view wx:if='{{item.UserSimple.Profession}}'>{{item.UserSimple.Profession}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+
+
+
+    <block wx:if='{{curIndex != 4}}' wx:for='{{chooseList}}' wx:key='{{index}}'>
+      <view class='choose_item'>
+        <view class='flexible'>
+          <view class='avatar_container flexible'>
+            <view class='avatar_wrapper'>
+              <image mode='aspectFill' class='avatar' src='{{item.FromHeadImage + "?x-oss-process=image/resize,w_150"}}'></image>
+              <view class='avatar_cover' wx:if='{{item.FromMask == "1"}}'></view>
+              <view class='enroll_text fs_22 {{item.FromEnrollSex == "男士" ? "female_label" : ""}}'>{{item.FromEnrollCodeText}}</view>
+            </view>
+            <view class='avatar_wrapper'>
+              <image mode='aspectFill' class='avatar' src='{{item.ToHeadImage}}'></image>
+              <view class='avatar_cover' wx:if='{{item.ToMask == "1"}}'></view>
+              <view class='enroll_text fs_22 {{item.ToEnrollSex == "男士" ? "female_label" : ""}}'>{{item.ToEnrollCodeText}}</view>
+            </view>
+          </view>
+          <view class='text_wrapper'>
+            <view class='fs_32'>{{item.SelectResultText}}</view>
+            <view class='fs_22'>{{item.FromNickName}}与{{item.ToNickName}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+
+
+
+
+
+
+
+  <view class='no_data' wx:if='{{noData && chooseList.length}}'>到底了~</view>
+  <view class='no_data' wx:if='{{noData && !chooseList.length}}'>暂无嘉宾互选数据~</view>
+</scroll-view>

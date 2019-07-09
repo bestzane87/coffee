@@ -1,0 +1,12 @@
+<template name='showModal'>
+  <view class='modal_container'>
+    <view class='modal_wrapper'>
+      <block wx:for='{{content}}' wx:key='{{index}}'>
+        <view class='fs_34 share_content'>{{item}}</view>
+      </block>
+      <view catchtap='toggleShowModal' class='modal_footer'>
+        <view class='fs_36'>我知道了</view>
+      </view>
+    </view>
+  </view>
+</template>

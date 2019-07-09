@@ -1,0 +1,40 @@
+<import src='/template/template.wxml'/>
+
+<view class='reasons_wrapper'>
+  <view class='fs_34 reason_title'>请选择拒绝理由</view>
+  <block
+    wx:for='{{reasonsObj}}'
+    wx:key='{{index}}'
+    wx:for-index='key'
+    wx:for-item='value'
+  >
+    <view 
+      class='reason_item flexible'
+      wx:if='{{key != "4"}}'
+      data-index='{{key}}'
+      catchtap='tapReasonItem'
+    >
+      <view class='circle_empty {{curIndex == key ? "circle_full" : ""}}'></view>
+      <view class='fs_30 {{curIndex == key ? "weight_c" : ""}}'>{{value}}</view>
+    </view>
+    <view
+      data-index='{{key}}'
+      catchtap='tapReasonItem'
+      class='reason_item flexible'
+      wx:elif='{{key == "4"}}'
+    >
+      <view class='circle_empty {{curIndex == key ? "circle_full" : ""}}'></view>
+      <input
+        maxlength='30'
+        class='fs_30 {{curIndex == key ? "weight_c" : ""}}'
+        placeholder='{{value}}'
+        bindblur='getInputReason'
+        bindconfirm='getInputReason'
+      ></input>
+    </view>
+  </block>
+</view>
+
+<view catchtap='refuseAttempt'>
+  <template is='bottomBtn'  data='{{text: "提交"}}'/>  
+</view>

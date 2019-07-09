@@ -1,0 +1,22 @@
+<import src='../../template/template.wxml'/>
+
+<view class='refund_container'>
+  <view class='fs_34'>请选择票款类型</view>
+  <block wx:for='{{refundObj}}' wx:key='{{index}}'>
+    <view
+      class='flexible fs_30 refund_item_wrapper'
+      catchtap='selectRefundItem'
+      data-index='{{index}}'
+      data-value='{{item.Value}}'
+      data-key='{{item.Key}}'
+    >
+      <view class='circle_empty {{curIndex == index ? "full_circle" : ""}}'></view>
+      <view class='refund_item_name {{item.Value > 0 ? "" : "color_light"}}'>{{objTetx[item.Key]}}</view>
+      <view class='{{item.Value > 0 ? "" : "color_light"}}'>共￥ {{item.Value}}</view>
+    </view>
+  </block>
+</view>
+
+<view catchtap='refundOperation'>
+  <template is='bottomBtn' data='{{text: "提交"}}'/>
+</view>

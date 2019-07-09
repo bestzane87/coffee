@@ -1,0 +1,29 @@
+<view>
+  <view class='rules_detail fs_28'>{{rules}}</view>
+
+  <!-- 获奖者列表 -->
+  <view class='award_list'>
+    <view class='award_title flexible'>
+      <view class='title_left flexible'>
+        <view class='middle_line'></view>
+        <view class='circle_g'></view>
+      </view>
+      <view class='title_center'>中奖榜单</view>
+      <view class='title_right flexible'>
+        <view class='circle_g'></view>
+        <view class='middle_line'></view>
+      </view>
+    </view>
+    
+    <view class='full_width' wx:if='{{list.length}}'>
+      <block wx:for='{{list}}' wx:key='{{index}}'>
+        <view class='flexible'>
+          <image src='{{item.HeadImage}}' class='enroll_avatar'></image>
+          <view class='fs_28 enroll_nickname'>{{item.EnrollNickName}}</view>
+          <view class='fs_22'>{{item.EnrollCodeText}}</view>
+        </view>
+      </block>
+    </view>
+    <image class='empty_list' src='/images/reward_tips.png' wx:else></image>
+  </view>
+</view>

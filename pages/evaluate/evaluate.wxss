@@ -1,0 +1,27 @@
+@import '/template/template.wxss';
+
+textarea {
+  width: 702rpx;
+  height: 450rpx;
+  margin: 22rpx auto;
+  box-shadow:0px 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius:9rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  
+}
+.btn_wrapper>button {
+  width: 669rpx;
+  height: 96rpx;
+  background: linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  box-shadow: 0rpx 3rpx 8rpx 0rpx rgba(0, 0, 0, 0.16);
+  border-radius: 48rpx;
+  line-height: 96rpx;
+  text-align: center;
+  color: rgba(255,255,255,1);
+  font-size: 30rpx;
+}
+button[disabled] {
+  color: #fff !important;
+}

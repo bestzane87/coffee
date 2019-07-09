@@ -1,0 +1,15 @@
+<view class='download_container'>
+  <view class='img_container'>
+    <image class='download' src='https://ossqiyu.oss-cn-hangzhou.aliyuncs.com/Advertisements/20190701174041.jpg'></image>
+  </view>
+  <view class='flexible tips_container'>
+    <view class='justify_line'></view>
+    <view class='tips'>请保存图片后再扫码</view>
+    <view class='justify_line'></view>
+  </view>
+  <view class='save_container'>
+    <button catchtap='saveDownloadImg'>
+      <image src='/images/save.png' class='save'></image>
+    </button>
+  </view>
+</view>

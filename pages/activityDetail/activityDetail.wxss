@@ -1,0 +1,266 @@
+@import '/template/template.wxss';
+@import '/template/share/share.wxss';
+@import '/template/showModal/showModal.wxss';
+
+.banner_activity {
+  width: 750rpx;
+  height: 465rpx;
+}
+.s_icon {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 7rpx;
+}
+.top_wrapper {
+  position: relative;
+  padding: 29rpx 24rpx 23rpx 24rpx;
+  border-bottom: 22rpx solid #EEEEEE;
+}
+.activity_deposit {
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.activity_num {
+  font-size: 24rpx;
+  color: #4B4A4A;
+  margin: 16rpx 0 38rpx;
+}
+.deposit_num {
+  color: #999999;
+  font-size: 30rpx;
+  margin-left: 46rpx;
+}
+.activity_name {
+  width: 550rpx;
+  font-size: 34rpx;
+}
+.activity_cost {
+  color: #FFA200;
+  font-size: 34rpx;
+}
+.activity_date, .activity_place {
+  font-size: 30rpx;
+  align-items: center;
+}
+.activity_banner {
+  position: relative;
+}
+.share_btn {
+  position: absolute;
+  top: 35rpx;
+  right: 30rpx;
+  z-index: 999;
+  background: none;
+  padding: 0;
+  line-height: 1;
+}
+.share_btn image {
+  width: 48rpx;
+  height: 48rpx;
+}
+.arrow_get_more {
+  width: 30rpx;
+  height: 30rpx;
+}
+.activity_place {
+  margin-top: 20rpx;
+}
+.vertical_line {
+  width: 14rpx;
+  height: 40rpx;
+  background: rgba(158,139,255,1);
+  border-radius: 4rpx;
+  margin-right: 22rpx;
+}
+.sponsor_wrapper {
+  padding: 0 24rpx;
+}
+.ques_num {
+  background: #EA5353;
+  width: 34rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  font-size: 24rpx;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 24rpx;
+}
+.activity_person, .condition_wrapper, .sponsor_wrapper, .bottom_wrapper {
+  border-bottom: 22rpx solid #EEEEEE;
+}
+.one_rpx {
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.activity_person:last-child {
+  border: none;
+}
+.condition_wrapper>view, .ask, .match {
+  padding: 22rpx 24rpx;
+  /* border-bottom: 1rpx solid rgba(153,153,153,.3); */
+  font-size: 32rpx;
+}
+.bottom_wrapper .match {
+  border-top: 22rpx solid #eee;
+}
+.flexible {
+  display: flex;
+  align-items: center;
+}
+.slogan {
+  margin: 16rpx 0 34rpx 0;
+  width: 530rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+}
+.margin_l {
+  margin: 14rpx 0 0 45rpx;
+}
+.sponsor_avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
+}
+.arrow_r {
+  width: 16rpx;
+  height: 30rpx;
+}
+.xs_icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+.avatar_wrapper {
+  height: 100%;
+}
+.get_detail {
+  position: relative;
+  top: -20rpx;
+  background: #fff;
+}
+.get_more {
+  margin-top: 20rpx;
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+}
+.get_more view {
+  margin-right: 10rpx;
+  font-size: 30rpx;
+}
+.num {
+  font-size: 24rpx;
+  color: #333;
+  margin-right: 60rpx;
+}
+.slogan_bottom {
+  align-items: center;
+}
+.num_name {
+  font-size: 24rpx;
+  color: #999;
+  margin: 0 18rpx 0 13rpx;
+}
+.sponsor_msg {
+  padding: 26rpx 24rpx;
+}
+.sponsor_name {
+  font-size: 32rpx;
+  flex: 1;
+}
+.all_width {
+  flex: 1;
+}
+.match {
+  border: none;
+  flex-wrap: wrap;
+}
+.enroll_wrapper {
+  padding: 24rpx;
+  justify-content: flex-end;
+}
+.enroll_btn {
+  width: 150rpx;
+  height: 60rpx;
+  background: linear-gradient(146deg,rgba(127,127,248,1),rgba(174,127,242,1));
+  border-radius: 30rpx;
+  color: rgba(254,254,255,1);
+  font-size: 28rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.activity_viewed {
+  margin-right: 40rpx;
+}
+.collection_wrapper {
+  position: absolute;
+  top: 30rpx;
+  right: 0;
+  width:140rpx;
+  height:60rpx;
+  box-sizing: border-box;
+  padding-left: 22rpx;
+  background:rgba(238,238,238,1);
+  border-radius:30rpx 0px 0px 30rpx;
+}
+.collection_icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 7rpx;
+}
+.operation_btn {
+  border: none;
+}
+.history_item {
+  width: 100%;
+  box-sizing: border-box;
+  
+}
+.d {
+  padding: 10rpx 0 0 44rpx;
+  justify-content: space-between;
+}
+.d view {
+  color: #999;
+  font-size: 28rpx;
+}
+.f {
+  margin-left: 45rpx;
+}
+.explain {
+  color: #999;
+  font-size: 26rpx;
+}
+.address_text {
+  flex: 1;
+}
+.activity_banner {
+  position: relative;
+}
+.padding_b {
+  padding-bottom: 120rpx;
+}
+.operation_btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+.back_index {
+  position: fixed;
+  bottom: 200rpx;
+  right: 30rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  border: 1rpx solid #999;
+  font-size: 22rpx;
+  font-weight: 600;
+  line-height: 80rpx;
+  text-align: center;
+  box-shadow: 0 0 5px #888888;
+  background: #fff;
+}

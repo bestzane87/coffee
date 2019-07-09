@@ -1,0 +1,33 @@
+<template name='showShare'>
+  <view class='share_ac_tem'>
+    <view class='share_img_wrapper'>
+      <image
+        show-menu-by-longpress='true'
+        src='{{imgurl}}'
+        class='share_code'
+      ></image>
+    </view>
+
+    <view class='share_operation'>
+      <view
+        catchtap='toggleShowModal'
+        class='fs_24 desc_wrapper'
+      >{{text}}<text class='bordered_ques'>?</text></view>
+      <view class='flexible share_operation_wrapper'>
+        <button open-type='share' class='col_flexible' hover-class="none">
+          <image class='share_icon' src='/images/weixin.png'></image>
+          <view class='fs_24'>微信好友</view>
+        </button>
+        <view class='col_flexible' catchtap='downloadShare'>
+          <image  class='share_icon' src='/images/save_share.png'></image>
+          <view class='fs_24'>下载专属海报</view>
+        </view>
+      </view>
+
+      <view
+        catchtap='hideShareContainer'
+        class='fs_34 share_cancle'
+      >取消</view>
+    </view>
+  </view>
+</template>

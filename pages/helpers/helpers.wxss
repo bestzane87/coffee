@@ -1,0 +1,9 @@
+/* pages/helpers/helpers.wxss */
+.award {
+  height: 100rpx;
+  border-bottom: 1rpx solid rgba(153,153,153,.3);
+  padding: 0 24rpx;
+}
+.label_text {
+  flex: 1;
+}

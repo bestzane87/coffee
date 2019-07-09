@@ -1,0 +1,67 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxd1e25296af4eea34",
+	"projectname": "coffee",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "上拉下拉",
+					"pathName": "pages/activityDetailCode/activityDetailCode",
+					"query": "scene=229",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "2222",
+					"pathName": "pages/enrollerSearch/enrollorSearch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "333",
+					"pathName": "pages/chooseLogin/chooseLogin",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

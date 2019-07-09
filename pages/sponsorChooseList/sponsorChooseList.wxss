@@ -1,0 +1,36 @@
+@import '../allActivities/allActivities.wxss';
+@import '../chooseList/chooseList.wxss';
+@import '../mutualChoose/mutualChoose.wxss';
+
+.act_labels {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.act_labels view {
+  margin: 0;
+}
+.act_labels view {
+  border-bottom:4rpx solid rgba(242,242,242,1);
+}
+.act_labels .bottom_line_ss {
+  padding: 0;
+  position: absolute;
+  width:750rpx;
+  height:4rpx;
+  background:rgba(242,242,242,1);
+  bottom: -4rpx;
+  left: 0;
+  z-index: -1;
+}
+.num {
+  height: 66rpx;
+  box-sizing: border-box;
+  padding: 14rpx 24rpx;
+}
+scroll-view {
+  height: 1050rpx;
+}
+.female_label {
+  background: #38CDED;
+}

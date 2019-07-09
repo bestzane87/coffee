@@ -1,0 +1,86 @@
+@import '/template/template.wxss';
+
+.get_code {
+  line-height: 60rpx;
+  height: 60rpx;
+  background: linear-gradient(-90deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  color: #fff;
+  width: 190rpx;
+  padding: 0;
+}
+.login_btn {
+  margin-top: 160rpx;
+  color: #fff;
+  width:666rpx;
+  height:96rpx;
+  display: block;
+  line-height: 96rpx;
+  background:linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  border-radius:48rpx;
+  padding: 0;
+}
+.clickable {
+  box-shadow: 0rpx 18rpx 13rpx 0rpx rgba(168,107,255,0.3);
+}
+.logo {
+  width: 125rpx;
+  height: 125rpx;
+  margin: 106rpx auto;
+}
+.input_wrapper {
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+input {
+  font-size: 34rpx;
+  padding: 20rpx 0;
+  
+}
+.input_wrapper>view {
+  width: 640rpx;
+  border-bottom: 1rpx solid rgba(228,228,228,1);
+}
+.get_code {
+  margin: 0;
+}
+.verify_code_wrapper {
+  justify-content: space-between;
+}
+.input_wrapper>view:nth-child(2) {
+  margin-top: 30rpx;
+}
+.white {
+  border: 1rpx solid #333;
+  background: white;
+  color: #333;
+}
+.wechat_logo {
+  height: 80rpx;
+  width: 80rpx;
+}
+.other_login {
+  width: 638rpx;
+  margin: 110rpx auto 50rpx;
+}
+.other_text {
+  color: #999;
+  text-align: center;
+  flex: 1;
+}
+.row_line {
+  width: 200rpx;
+  border-top: 1rpx solid rgba(228,228,228,1);
+}
+.weixin_text {
+  font-size:24rpx;
+  color:rgba(153,153,153,1);
+  margin-top: 10rpx;
+}
+.choose_wechat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

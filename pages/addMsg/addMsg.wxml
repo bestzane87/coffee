@@ -1,0 +1,143 @@
+<import src='/template/template.wxml' />
+
+<view
+  catchtap='hideTipsModal'
+  class='tips_wrapper'
+  wx:if='{{showTips}}'
+>
+  <view class='tips_container'>
+    <view class='fs_34 tips_content'>将刚刚完成的基本资料同步到约杯咖啡首页，让更多单身朋友看到我以便更快脱单</view>
+    <view class='flexible'>
+      <view
+        catchtap='toggleOnlineState'
+        data-state='2'
+        class='fs_36 operate_btn_1'
+      >不同步</view>
+      <view
+        catchtap='toggleOnlineState'
+        data-state='1'
+        class='fs_36 operate_btn_2'
+      >同步</view>
+    </view>
+  </view>
+</view>
+
+<view>
+  <view class='bg_wrapper'>
+    <image src='/images/default.png'></image>
+    <view class='left_top'></view>
+    <view class='right_bottom'></view>
+    <view wx:if='{{!gender}}' class='choose_tips'>为您找到心动的感觉</view>
+    <view wx:elif='{{!emotion}}' class='choose_tips'>您为何而来</view>
+    <view wx:elif='{{!education}}' class='choose_tips'>您的学历是</view>
+    <view wx:elif='{{!salary}}' class='choose_tips'>您的月收入是</view>
+    <view wx:elif='{{!workPlace}}' class='choose_tips'>您的工作地区在哪里</view>
+    <view wx:elif='{{!birthday}}' class='choose_tips'>您的出生日期是</view>
+    <view wx:elif='{{!career}}' class='choose_tips'>您的职业是</view>
+    <view wx:else class='choose_tips'>请上传本人头像</view>
+  </view>
+
+  <view wx:if='{{!gender}}'>
+    <view class='question fs_34'>请问你的性别是</view>
+    <view class='flexible male_wrapper'>
+      <view catchtap='resetMsg' data-state='男士' data-setting='gender'>
+        <image src='/images/man.png' class='male'></image>
+        <view class='male_text'>男</view>
+      </view>
+
+      <view catchtap='resetMsg' data-state='女士' data-setting='gender'>
+        <image src='/images/woman.png' class='female'></image>
+        <view class='male_text'>女</view>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:elif='{{!emotion}}' class='flexible states_wrapper'>
+    <button hover-class='hover_btn' class='state_item' data-state='单身' data-setting='emotion' catchtap='resetMsg'>为自己找对象</button>
+    <button hover-class='hover_btn' class='state_item' data-state='恋爱中' data-setting='emotion' catchtap='resetMsg'>为他人找对象</button>
+    <view class='emotion_tips_1 fs_24'>温馨提醒</view>
+    <view class='emotion_tips_2 fs_24'>1.选择为他人找对象将不再首页展示，且部分功能无法使用。</view>
+    <view class='emotion_tips_3 fs_24'>2.选定之后一个月只能修改一次。</view>
+  </view>
+
+  <view wx:elif='{{!education}}' class='flexible states_wrapper'>
+    <block wx:for='{{educationArr}}' wx:key='{{index}}'>
+      <button hover-class='hover_btn' class='state_item' data-state='{{item}}' data-setting='education' catchtap='resetMsg'>{{item}}</button>
+    </block>
+  </view>
+
+  <view wx:elif='{{!salary}}' class='flexible states_wrapper'>
+    <block wx:for='{{salaryArr}}' wx:key='{{index}}'>
+      <button hover-class='hover_btn' class='state_item' data-state='{{item}}' data-setting='salary' catchtap='resetMsg'>{{item}}</button>
+    </block>
+  </view>
+
+  <view wx:elif='{{!workPlace}}' class='flexible states_wrapper'>
+    <picker-view indicator-style="height: 50px;" class='picker_view_wrapper' value="{{regionValue}}" bindchange="bindRegionChange">
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{areas}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+
+    <view class='next' catchtap='getWorkPlace'>下一步</view>
+  </view>
+
+
+
+  <view wx:elif='{{!birthday}}' class='flexible states_wrapper'>
+    <picker-view indicator-style="height: 50px;" class='picker_view_wrapper' value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{years}}" wx:key='{{index}}' class='picker_item'>{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{months}}" wx:key='{{index}}' class='picker_item'>{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{days}}" wx:key='{{index}}' class='picker_item'>{{item}}日</view>
+      </picker-view-column>
+    </picker-view>
+
+    <view class='next' catchtap='getBirthday'>下一步</view>
+  </view>
+
+
+  <view wx:elif='{{!career}}' class='flexible states_wrapper'>
+    <picker-view indicator-style="height: 50px;" class='picker_view_wrapper' value="{{careerValue}}" bindchange="bindCareerChange">
+      <picker-view-column>
+        <view wx:for="{{professions}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{careers}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+
+    <view class='next' catchtap='getCareer'>下一步</view>
+  </view>
+
+  <view wx:elif='{{!career}}' class='flexible states_wrapper'>
+    <picker-view indicator-style="height: 50px;" class='picker_view_wrapper' value="{{careerValue}}" bindchange="bindCareerChange">
+      <picker-view-column>
+        <view wx:for="{{professions}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{careers}}" wx:key='{{index}}' class='picker_item'>{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+
+    <view class='next' catchtap='getCareer'>下一步</view>
+  </view>
+
+  <view wx:else class='flexible states_wrapper'>
+    <image src='{{avatarUrl ? avatarUrl : "/images/empty_avatar.png"}}' class='avatar_container_r' catchtap='toCutAvatar'></image>
+  </view>
+</view>
+
+<view catchtap='showOnlineModal' wx:if='{{gender && emotion && education && salary && workPlace && career && avatarUrl}}'>
+  <template is='bottomBtn' data='{{text: "完成"}}' />
+</view>

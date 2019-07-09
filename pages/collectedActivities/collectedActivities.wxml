@@ -1,0 +1,31 @@
+<scroll-view
+  style='height: {{height}}rpx'
+  scroll-y
+  bindscrolltolower='getCollectedActivities'
+>
+  <block wx:for='{{collectedList}}' wx:key='{{index}}'>
+    <view class='activity_item_l' catchtap='getActivityDetail' data-id='{{item.ActivityId}}' catchlongpress='deleteCollectActivity' data-index='{{index}}'>
+      <view class='act_detail flexible'>
+        <view class='post_wrapper'>
+          <view class='over_bg' wx:if='{{item.IsStateText == "已结束"}}'>已结束</view>
+          <image src='{{item.PosterImage}}' class='act_bg'></image>
+        </view>
+        <view class='act_msg flexible'>
+          <view class='left_area'>
+            <view class='act_name'>{{item.Title}}</view>
+            <view class='attempt_num'>{{item.PersonNumberText}}</view>
+            <view class='flexible date_place'>
+              <view>{{item.DateTimeText}}</view>
+              <view class='place'>{{item.Place}}</view>
+            </view>
+          </view>
+          <view class='right_area'>
+            <view class='costs'>{{item.PriceText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class='no_data' wx:if='{{noData && collectedList.length}}'>已经到底了~</view>
+  <view class='no_data' wx:if='{{noData && !collectedList.length}}'>暂时没有已收藏活动~</view>
+</scroll-view>

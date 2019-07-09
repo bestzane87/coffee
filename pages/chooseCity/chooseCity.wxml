@@ -1,0 +1,48 @@
+<scroll-view
+  style='height: {{height}}rpx'
+  scroll-into-view='{{curId}}'
+  scroll-y
+>
+  <view id='cur'>
+    <view class='letter_label'>当前城市</view>
+    <view class='flexible city_wrapper'>
+      <view
+        data-city='杭州'
+        catchtap='setCity'
+        class='city_per'
+      >杭州</view>
+    </view>
+  </view>
+
+  <view id='hot'>
+    <view class='letter_label'>热门城市</view>
+    <view class='flexible city_wrapper'>
+      <block wx:for='{{hotCitys}}' wx:key='{{index}}'>
+        <view
+          data-city='{{item.Value}}'
+          catchtap='setCity'
+          class='city_per'
+        >{{item.Value}}</view>
+      </block>
+    </view>
+  </view>
+
+  <block wx:for='{{citys}}' wx:key='{{index}}'>
+    <view class='letter_label' id='{{item.initial}}'>{{item.initial}}</view>
+    <block wx:for='{{item.list}}' wx:for-item='c' wx:for-key='i' wx:key='{{i}}'>
+      <view 
+        class='city_item'
+        data-city='{{c.name}}'
+        catchtap='setCity'
+      >{{c.name}}</view>
+    </block>
+  </block>
+</scroll-view>
+
+<view class='letter_wrapper'>
+  <view class='container'>
+    <block wx:for='{{letterArr}}' wx:key='{{index}}'>
+      <view class='fs_24' catchtap='handleClickLetter' data-id='{{item}}'>{{item}}</view>
+    </block>
+  </view>
+</view>

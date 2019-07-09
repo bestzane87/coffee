@@ -1,0 +1,26 @@
+@import '/template/template.wxss';
+
+.msg_wrapper {
+  width:702rpx;
+  box-shadow:0rpx 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius:9rpx;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  margin: 30rpx auto;
+}
+.msg_item {
+  padding: 30rpx 0;
+}
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24rpx;
+}
+input {
+  text-align: right;
+  font-size: 32rpx;
+}
+.avatar {
+  margin: 0;
+}

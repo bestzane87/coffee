@@ -1,0 +1,39 @@
+<import src='../../template/template.wxml'/>
+
+<view class='ticket_container'>
+  <block wx:for='{{ticketList}}' wx:key='{{index}}'>
+    <view class='ticket_item_wrapper' catchtap='chooseTicket' data-index='{{index}}' data-text='{{item.TicketStateText}}'>
+      <view class='flexible'>
+        <view>{{item.TicketName}}</view>
+        <view wx:if='{{item.TicketStateText == "售票中"}}' class='circle {{curIndex == index ? "full" : ""}}'></view>
+        <view wx:else class='ticket_tips'>{{item.TicketStateText}}</view>
+      </view>
+      <view class='flexible cost_remain'>
+        <view>{{item.ticketT}}</view>
+      </view>
+      
+      <view class='flexible last_time'>
+        <view class='cost_num'>{{item.TicketMoneyText}}<text class='reward_tips' wx:if='{{item.RewardText}}'>{{item.RewardText}}</text></view>
+      </view>
+      <view wx:if='{{item.IsCheckText}}'>{{item.IsCheckText}}</view>
+      <view class='fs_24'>售票时间：{{item.startTime}}-{{item.endTime}}</view>
+      <view
+        wx:if='{{item.TicketExplain}}'
+        class='ticket_explain fs_24'
+      >票种说明：{{item.TicketExplain}}</view>
+    </view>
+  </block>
+</view>
+
+<view catchtap='navigateToForms' wx:if='{{!getUserInfo}}'>
+  <template is='bottomBtn' data='{{text: "下一步"}}'></template>
+</view>
+
+<view wx:else class='info_wrapper'>
+  <button
+    class='get_info_btn'
+    bindgetuserinfo='getUserInfo'
+    open-type='getUserInfo'
+  >下一步</button>
+</view>
+

@@ -1,0 +1,115 @@
+@import '../../template/template.wxss';
+
+view {
+  font-size: 30rpx;
+}
+.ticket_container {
+  padding-bottom: 160rpx;
+}
+.reward_tips {
+  font-size: 28rpx;
+  color: #333;
+  padding-left: 20rpx;
+}
+.ticket_item_wrapper {
+  width:702rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 3rpx 11rpx 5rpx rgba(0, 0, 0, 0.14);
+  border-radius:9rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  margin-top: 20rpx;
+}
+.ticket_item_wrapper .ticket_explain {
+  margin: 0;
+}
+.ticket_item_wrapper:nth-child(1) {
+  margin-top: 30rpx;
+}
+.ticket_item_wrapper>view {
+  margin-bottom: 20rpx;
+}
+.ticket_item_wrapper .operation_wrapper {
+  margin-bottom: 0;
+}
+.cost_num {
+  color: #A37DF6;
+}
+
+.operation_wrapper, .cost_remain, .last_time {
+  justify-content: space-between;
+}
+.operation_wrapper view {
+  display: flex;
+  align-items: center;
+}
+.delete_icon, .operation_icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 14rpx;
+}
+.bottom_btns {
+  border-top: 1rpx solid rgba(229,229,229,1);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  justify-content: space-between;
+  height: 135rpx;
+  background: rgba(255,255,255,1);
+}
+.bottom_btns view {
+  color: #fff;
+  width: 330rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  background: linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  box-shadow: 0px 3rpx 8rpx 0px rgba(0, 0, 0, 0.16);
+  border-radius: 48rpx;
+}
+.circle {
+  box-sizing: border-box;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius:50%;
+  border: 1rpx solid rgba(169,155,252,1);
+}
+.full {
+  background:rgba(169,155,252,1);
+}
+.ticket_item_wrapper>view {
+  flex: 1;
+  justify-content: space-between;
+}
+.ticket_tips {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.get_info_btn {
+  width:669rpx;
+  height:96rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  box-shadow:0rpx 3rpx 8rpx 0rpx rgba(0, 0, 0, 0.16);
+  border-radius:48rpx;
+  color: #fff;
+}
+.info_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height:134rpx;
+  background:rgba(255,255,255,1);
+  border-top:1rpx solid rgba(229,229,229,1);
+}

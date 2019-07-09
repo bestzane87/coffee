@@ -1,0 +1,102 @@
+.container {
+  padding: 30rpx 24rpx;
+}
+.cash-section {
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0,0,0,0.14);
+  border-radius: 9rpx;
+  margin-bottom: 24rpx;
+}
+.cash-section>view {
+  width: 100%;
+}
+.tips {
+  font-size: 15px;
+  justify-content: space-between;
+}
+.s-tips {
+  font-size: 14px;
+}
+.cash-num {
+  border-bottom: 1rpx solid #eee;
+  font-size: 30px;
+  margin: 20rpx 0;
+}
+
+.bottom-btn {
+  width: 666rpx;
+  height: 96rpx;
+  background: linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  border-radius: 48rpx;
+  color: #fff;
+  margin: 60rpx auto;
+}
+.cash-title {
+  font-size: 17px;
+}
+input {
+  padding-left: 20rpx;
+}
+.wechat {
+  width: 58rpx;
+  height: 58rpx;
+}
+.circle {
+  width: 40rpx;
+  height: 40rpx;
+  background:rgba(169,155,252,1);
+  border-radius:50%;
+}
+.white-circle {
+  border:1px solid rgba(153,153,153,1);
+  background: #fff;
+}
+.recharge-text {
+  flex: 1;
+}
+.cash-rules {
+  font-size: 17px;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  margin-bottom: 10rpx;
+}
+.rule-item {
+  font-size: 14px;
+  line-height: 45rpx;
+}
+.cash-center {
+  padding: 20rpx 0;
+  border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  margin: 20rpx 0;
+}
+.wechat {
+  margin-right: 18rpx;
+}
+
+.cash-section {
+  font-size: 17px;
+}
+.payment-num {
+  text-indent: 2em;
+  margin-top: 10rpx;
+}
+.payment-num text {
+  color: #FFAE2F;
+}
+.cash-center-t {
+  margin: 20rpx 0 0 0;
+  border-bottom: none;
+  border-top: 1rpx solid #eee;
+  padding-top: 20rpx;
+}
+.tips {
+  font-size: 30rpx;
+  color: rgba(153,153,153,1);
+  padding-top: 15rpx;
+  border-top: 1rpx solid #eee;
+  margin-top: 30rpx;
+}

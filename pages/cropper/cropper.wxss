@@ -1,0 +1,29 @@
+.bottom_wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  background: #131313;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 99999;
+}
+.bottom_wrapper view {
+  color: #fff;
+  z-index: 99;
+  font-size: 36rpx;
+}
+.top_tips {
+  position: fixed;
+  top: 60rpx;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 34rpx;
+  z-index: 999;
+}

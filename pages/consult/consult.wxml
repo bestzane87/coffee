@@ -1,0 +1,21 @@
+<import src='/template/template.wxml'/>
+
+<view class='textarea_wrapper'>
+  <textarea
+    bindblur='getText'
+    bindconfirm='getText'
+    bindinput='changeNum'
+    maxlength='100'
+    placeholder='想要咨询什么呢...'
+  ></textarea>
+  <view>{{inputNum}}/100</view>
+</view>
+
+<view
+  catchtap='saveQuestion'
+  class='btn_wrapper flexible'
+>
+  <button
+    disabled='{{tapState}}'
+  >保存</button>
+</view>

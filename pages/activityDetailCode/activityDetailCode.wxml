@@ -1,0 +1,159 @@
+<import src='../../template/template.wxml' />
+<import src='../../template/share/share.wxml' />
+<import src='../../template/showModal/showModal.wxml' />
+
+<view wx:if='{{showPage}}'>
+<!-- 回首页按钮，只有分享出去的页面带有该参数 -->
+<view
+  wx:if='{{fromUserId || share}}'
+  catchtap='skipToIndex'
+  class='back_index'
+>去首页</view>
+
+<view class='padding_b'>
+  <view class='activity_banner'>
+  <!-- 分享按钮 -->
+    <!-- <button catchtap='shareActivity' class='share_btn'>
+      <image src='/images/share.png'></image>
+    </button> -->
+    <image mode='aspectFill' src='{{activityMsg.PosterImage}}' class='banner_activity'></image>
+  </view>
+  
+  <view class='top_wrapper'>
+    <view catchtap='handleCollected' class='collection_wrapper fs_28 flexible'>
+      <image wx:if='{{activityMsg.IsCollection === "0"}}' src='/images/uncollected.png' class='collection_icon'></image>
+      <image wx:else src='/images/collected.png' class='collection_icon'></image>
+      <view class='color_light fs_22'>{{activityMsg.IsCollection == '0' ? "收藏" : "已收藏"}}</view>
+    </view>
+    <view
+      catchtap='hideShareContainer'
+      class='activity_name'
+    >{{activityMsg.Title}}</view>
+    <view class='activity_num flexible'>
+      <view class='activity_viewed'>浏览 {{activityMsg.SeeNumber}} 次</view>
+      <view class='activity_favorite'>收藏 {{activityMsg.CollectionNumber}} 次</view>
+    </view>
+    <view class='activity_deposit flexible'>
+      <view class='activity_cost'>{{activityMsg.PriceText}}</view>
+      <view class='deposit_num'>{{activityMsg.DepositText}}</view>
+    </view>
+    <view class='activity_date flexible'>
+      <image src='/images/icon-clock.png' class='s_icon'></image>
+      <view>{{activityMsg.DateTimeText}}</view>
+    </view>
+    <view class='activity_place flexible' catchtap='getLocation'>
+      <image src='/images/icon-location.png' class='s_icon'></image>
+      <view class='address_text'>{{activityMsg.Address}}{{activityMsg.Place}}</view>
+      <image src='/images/arrow_r.png' class='arrow_r'></image>
+    </view>
+  </view>
+
+  <view class='condition_wrapper'>
+    <view class='flexible'>
+      <view class='vertical_line'></view>
+      <view>类型：{{activityMsg.TypeText}}</view>
+    </view>
+    <view class='activity_person'>
+      <view class='flexible'>
+        <view class='vertical_line'></view>
+        <view>活动人数：{{activityMsg.PersonNumberText}}</view>
+        <view class='f' wx:if='{{activityMsg.RemainingNumberText}}'>{{activityMsg.RemainingNumberText}}</view>
+      </view>
+    </view>
+    <view class='activity_person'>
+      <view class='flexible'>
+        <view class='vertical_line'></view>
+        <view>报名条件</view>
+      </view>
+      <view class='margin_l fs_30'>男方：{{manCondition}}</view>
+      <view class='margin_l fs_30'>女方：{{womanCondition}}</view>
+      <view class='margin_l explain' wx:if='{{activityMsg.Explain}}'>{{activityMsg.Explain}}</view>
+    </view>
+  </view>
+
+  <view class='sponsor_wrapper flexible' catchtap='skipToSponsorDetail' data-id='{{sponsorMsg.UserId}}'>
+    <view class='avatar_wrapper'>
+      <image src='{{sponsorMsg.HeadImage}}' class='sponsor_avatar'></image>
+    </view>
+    <view class='sponsor_msg'>
+      <view class='flexible'>
+        <view class='sponsor_name'>{{sponsorMsg.NickName}}</view>
+        <image src='/images/arrow_r.png' class='arrow_r'></image>
+      </view>
+      <view class='slogan'>{{sponsorMsg.Summary}}</view>
+      <view class='flexible slogan_bottom'>
+        <image src='/images/icon-fans.png' class='xs_icon'></image>
+        <view class='num_name'>粉丝</view>
+        <view class='num'>{{sponsorMsg.FansNumber}}</view>
+        <image src='/images/icon-activity.png' class='xs_icon'></image>
+        <view class='num_name'>活动</view>
+        <view class='num'>{{sponsorMsg.ActivityNumber}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='bottom_wrapper one_rpx'>
+    <view class='flexible ask'>
+      <view class='vertical_line'></view>
+      <view class='all_width' catchtap='tapHelper'>小助手</view>
+      <image src='/images/arrow_r.png' class='arrow_r'></image>
+    </view>
+  </view>
+  
+  <view class='bottom_wrapper'>
+    <view class='flexible ask'>
+      <view class='vertical_line'></view>
+      <view class='all_width' catchtap='activityAsk'>活动咨询</view>
+      <view
+        class='ques_num'
+        wx:if="{{activityMsg.NewConsultNumber != '0'}}"
+      >{{activityMsg.NewConsultNumber}}</view>
+      <image src='/images/arrow_r.png' class='arrow_r'></image>
+    </view>
+  </view>
+
+  <view
+    catchtap='getActivityDesc'
+    wx:if='{{activityMsg.Contents}}'
+  >
+    <view class='flexible ask get_more'>
+      <view>查看更多</view>
+      <image src='/images/get_more.png' class='arrow_get_more'></image>
+    </view>
+  </view>
+</view>
+
+
+<view
+  class='operation_btn flexible'
+  wx:if='{{buttons.length}}'
+>
+  <block wx:for='{{buttons}}' wx:key='{{index}}'>
+    <view
+      class='tap_buttons {{activityMsg.ClickButton.length - 1 == index ? "y" : ""}}'
+      catchtap='tapButtons'
+      data-code='{{item.Key}}'
+      data-activityid='{{activityId}}'
+      data-enrollid='{{activityMsg.EnrollId}}'
+      data-cost='{{activityMsg.TicketMoney}}'
+      data-paynumber='{{activityMsg.EnrollSerialNumbr}}'
+      data-chatgroupid='{{activityMsg.GroupChatId}}'
+    >
+      <template is='{{item.Key}}' data='{{ value: item.Number, text: item.Value }}'/>
+    </view>
+  </block>
+</view>
+
+<view
+  wx:if='{{showShareImg}}'
+  class='{{showShareImg ? "show_share" : "hide_share"}}'
+>
+  <template
+    is='showShare'
+    data='{{text: shareInfo.RewardAbstract, imgurl: shareInfo.QrCodeUrl}}'/>
+</view>
+</view>
+
+<view wx:if='{{showShareContent}}'>
+  <template is='showModal' data='{{content}}'/>
+</view>

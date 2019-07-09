@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "image-cropper": "../image-cropper/image-cropper"
+  },
+  "navigationBarTitleText": "完善资料"
+}

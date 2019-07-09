@@ -1,0 +1,11 @@
+<view class="section">
+  <picker bindchange="selectedProvince" value="{{index}}" range="{{arrayProvince}}">
+    <view class="picker"> {{province}} </view>
+  </picker>
+  <picker bindchange="selectedCity" value="{{index}}" range="{{arrayCity}}">
+    <view class="picker"> {{city}} </view>
+  </picker>
+  <picker bindchange="selectedDistrict" value="{{index}}" range="{{arrayDistrict}}">
+    <view class="picker"> {{district}} </view>
+  </picker>
+</view>

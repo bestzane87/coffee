@@ -1,0 +1,63 @@
+<import src='/template/template.wxml'/>
+
+<view class='choose_list'>
+  <block wx:for='{{chooseList}}' wx:key='{{index}}'>
+    <view class='choose_item'>
+      <view class='flexible'>
+        <view class='avatar_container flexible'>
+          <view
+            catchtap='getAvatarDetail'
+            data-id='{{item.FromUserId}}'
+            class='avatar_wrapper'
+          >
+            <image
+              mode='aspectFill'
+              class='avatar'
+              src='{{item.FromHeadImage}}'
+            ></image>
+            <view class='avatar_cover' wx:if='{{item.FromMask == "1"}}'></view>
+            <view
+              class='enroll_text fs_22 {{item.FromEnrollSex == "男士" ? "female_label" : ""}}'
+            >{{item.FromEnrollCodeText}}</view>
+          </view>
+          <view
+            catchtap='getAvatarDetail'
+            data-id='{{item.ToUserId}}'
+            class='avatar_wrapper'
+          >
+            <image
+              mode='aspectFill'
+              class='avatar'
+              src='{{item.ToHeadImage}}'
+            ></image>
+            <view class='avatar_cover' wx:if='{{item.ToMask == "1"}}'></view>
+            <view
+              class='enroll_text fs_22 {{item.ToEnrollSex == "男士" ? "female_label" : ""}}'
+            >{{item.ToEnrollCodeText}}</view>
+          </view>
+        </view>
+        <view class='text_wrapper'>
+          <view class='fs_32'>{{item.SelectResultText}}</view>
+          <view class='fs_22'>{{item.FromNickName}}与{{item.ToNickName}}</view>
+        </view>
+      </view>
+
+
+      <view class='operation_btn flexible' wx:if='{{item.ClickButton.length}}'>
+        <block wx:for='{{item.ClickButton}}' wx:key='{{index}}'>
+          <view class='tap_buttons {{item.ClickButton.length - 1 == index ? "y" : ""}}' catchtap='tapButtons' data-code='{{item.Key}}'>
+            <template is='{{item.Key}}' />
+          </view>
+        </block>
+      </view>
+
+
+    </view>
+  </block>
+</view>
+
+<view class='no_data' wx:if='{{noData}}'>暂无互选数据~</view>
+
+<view catchtap='navigateToAllUsers'>
+  <template is='bottomBtn' data='{{text: "全部嘉宾"}}'/>
+</view>

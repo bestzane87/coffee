@@ -1,0 +1,28 @@
+@import '/template/template.wxss';
+
+.reasons_wrapper {
+  padding: 34rpx 24rpx;
+}
+.circle_empty {
+  margin: 0 24rpx 0 20rpx;
+  width: 34rpx;
+  height: 34rpx;
+  border: 2rpx solid rgba(169,155,252,1);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.reason_item {
+  margin-bottom: 40rpx;
+}
+.reason_title {
+  margin-bottom: 34rpx;
+}
+.reason_item .fs_30 {
+  color: #999;
+}
+.reason_item .weight_c {
+  color: #000;
+}
+.circle_full {
+  background: #A99BFC;
+}

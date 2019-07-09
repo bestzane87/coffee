@@ -1,0 +1,43 @@
+@import '../allActivities/allActivities.wxss';
+
+.right_area {
+  justify-content: flex-end;
+}
+.activity_item_l {
+  border-top: none;
+  border-bottom: 22rpx solid rgba(153, 153, 153, .2);
+}
+.act_detail {
+  position: relative;
+}
+.cover_over {
+  position: absolute;
+  width:260rpx;
+  height:180rpx;
+  text-align: center;
+  line-height: 180rpx;
+  border-radius:8rpx;
+  background: rgba(0, 0, 0, .66);
+  top: 24rpx;
+  left: 24rpx;
+  color: #fff;
+}
+scroll-view {
+  height: 1206rpx;
+}
+.post_wrapper {
+  position: relative;
+}
+.over_bg {
+  width:260rpx;
+  height:180rpx;
+  border-radius:8rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background:rgba(0,0,0,.66);
+  color: #fff;
+  text-align: center;
+  line-height: 180rpx;
+  font-size: 30rpx;
+}

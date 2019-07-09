@@ -1,0 +1,32 @@
+<import src='../../template/template.wxml'/>
+
+<view class='role_container'>
+  <view></view>
+  
+  <block
+    wx:for='{{roleList}}'
+    wx:key='index'
+  >
+    <view>
+      <view class='category_name fs_34'>{{item.CategoryName}}</view>
+      <view class='role_list flexible'>
+        <block
+          wx:for='{{item.RoleList}}'
+          wx:for-item='role'
+          wx:key='index'
+        >
+          <view
+            catchtap='selectRoleName'
+            data-name='{{role.Value}}'
+            data-abled='{{role.Key}}'
+            class='role_name fs_28 flexible {{role.Key == 1 ? "disabled_role" : ""}} {{role.Value == curName ? "choosed_role" : ""}}'
+          >{{role.Value}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view catchtap='saveRoleName'>
+  <template is='bottomBtn' data='{{text: "保存"}}'></template>
+</view>

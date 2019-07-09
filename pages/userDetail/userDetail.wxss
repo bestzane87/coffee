@@ -1,0 +1,183 @@
+/* pages/userDetail/userDetail.wxss */
+.msg_container {
+  border-bottom: 150rpx solid #eee;
+}
+.location {
+  width: 38rpx;
+  height: 44rpx;
+}
+.distance_wrapper {
+  margin-bottom: 10rpx;
+}
+.distance {
+  margin-left: 5rpx;
+}
+.vip_icon {
+  margin-left: 15rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.distance_wrapper {
+  align-items: flex-end;
+}
+.distance {
+  align-items: flex-end;
+}
+.distance {
+  line-height: 100%;
+}
+.top_avatar_container {
+  width: 750rpx;
+  height: 622rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.avatar_bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+.vertical_line {
+  margin: 0 15rpx;
+}
+.color_f {
+  color: #fff;
+}
+.user_short_msg {
+  padding: 0 0 20rpx 24rpx;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.active_state {
+  margin-left: 20rpx;
+}
+scroll-view {
+  box-sizing: border-box;
+  padding: 16rpx 0;
+  width: 100vw;
+  white-space: nowrap;
+}
+.post_url {
+  width: 176rpx;
+  height: 176rpx;
+}
+.post_url_wrapper {
+  position: relative;
+  margin-right: 15.333333333rpx;
+  display: inline-block;
+}
+.post_url_wrapper:last-child {
+  margin: 0;
+}
+.play_icon {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: calc(50% - 25rpx);
+  left: calc(50% - 25rpx);
+  z-index: 99;
+}
+.border_bottom {
+  border-bottom: 20rpx solid rgba(238, 238, 238, 1);
+}
+.blue_vertical_line {
+  width: 14rpx;
+  height: 40rpx;
+  background: rgba(158,139,255,1);
+  border-radius: 4rpx;
+  margin-right: 20rpx;
+}
+.label {
+  height: 90rpx;
+  padding-left: 24rpx;
+  border-bottom: 1rpx solid rgba(238, 238, 238, 1);
+}
+.auth_list image {
+  width: 70rpx;
+  height: 70rpx;
+}
+.icon_list {
+  padding: 30rpx 58rpx;
+  justify-content: space-between;
+}
+.icon_list>view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon_list .fs_30 {
+  margin-top: 15rpx;
+}
+.gray_content {
+  color:rgba(153,153,153,1);
+}
+.monologue, .no_dynamic, .invite_prefer, .label_wrapper {
+  padding: 34rpx 58rpx;
+}
+.dynamic_scroll {
+  padding-left: 58rpx;
+  padding-right: 58rpx;
+}
+.dynamic_scroll image {
+  width: 134rpx;
+  height: 134rpx;
+}
+.dynamic_scroll .play_icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+.label_item {
+  padding: 10rpx 28rpx;
+  background: rgba(232,229,255,1);
+  border: 1rpx solid rgba(126,110,234,1);
+  border-radius: 30rpx;
+  line-height: 100%;
+  display: inline-block;
+  font-size: 28rpx;
+  color: #7E6EEA;
+  margin-bottom: 22rpx;
+  margin-right: 24rpx;
+}
+.label_wrapper {
+  padding-bottom: 8rpx;
+}
+.other_item {
+  background: rgba(255,249,251,1);
+  border: 1rpx solid rgba(255,161,163,1);
+  color: #FFA1A3;
+}
+.tap_heart {
+  width: 75rpx;
+  height: 75rpx;
+}
+.tap_out {
+  height:96rpx;
+  background:linear-gradient(146deg,rgba(116,110,243,1),rgba(168,107,255,1));
+  box-shadow:0rpx 3rpx 8rpx 0rpx rgba(0, 0, 0, 0.16);
+  border-radius:48rpx;
+  width:426rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+}
+.bottom_bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  padding: 0 24rpx 0 111rpx;
+  justify-content: space-between;
+  border-top: 1rpx solid #eee;
+  height: 135rpx;
+}
+.light_text {
+  text-align: center;
+}

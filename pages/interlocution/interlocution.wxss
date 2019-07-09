@@ -1,0 +1,79 @@
+@import '/template/template.wxss';
+
+.bottom_input_wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 0 0 0 24rpx;
+  width: 750rpx;
+  height: 110rpx;
+  background: rgba(238, 238, 238, .4);
+}
+.commit {
+  width: 124rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+input {
+  width: 602rpx;
+  height: 80rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background: rgba(255,255,255,1);
+  border-radius: 8rpx;
+  line-height: 1;
+}
+.input_placeholder {
+  font-size: 32rpx;
+  line-height: 1;
+}
+.send_msg {
+  flex: 1;
+  text-align: center;
+  color: #999;
+}
+.operate_icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+.questions {
+  flex: 1;
+}
+.operation_wrapper {
+  position: relative;
+}
+.operateions {
+  position: absolute;
+  height: 60rpx;
+  width: 200rpx;
+  background: #504f55;
+  left: -210rpx;
+  top: -6rpx;
+  border-radius: 6rpx;
+}
+.line_vertical {
+  width: 2rpx;
+  height: 34rpx;
+  background: #3b3c3e;
+}
+.operateions .fs_24 {
+  flex: 1;
+  color: #fff;
+  text-align: center;
+}
+.answer_contant {
+  flex: 1;
+}
+.delete_answer {
+  width: 100rpx;
+  text-align: right;
+  color:rgba(60,94,181,1);
+}
+.text {
+  margin-top: 10rpx;
+}
+scroll-view {
+  height: 1060rpx;
+}

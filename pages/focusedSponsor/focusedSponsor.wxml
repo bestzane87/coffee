@@ -1,0 +1,42 @@
+<scroll-view
+  style='height: {{height}}rpx'
+  bindscrolltolower='{{getFocusedList}}'
+  scroll-y
+>
+  <block wx:for='{{focusedList}}' wx:key='{{index}}'>
+    <view
+      data-id='{{item.UserOrganiser.UserId}}'
+      class='sponsor_wrapper flexible' 
+      catchtap='getSponsorDetail'
+    >
+      <view class='avatar_container'>
+        <image src='{{item.UserOrganiser.HeadImage + "?x-oss-process=image/resize,w_150"}}' class='avatar'></image>
+      </view>
+      <view class='sponsor_msg'>
+        <view class='sponsor_name fs_32'>{{item.UserOrganiser.NickName}}</view>
+        <view class='slogan fs_28'>{{item.UserOrganiser.Summary}}</view>
+        <view class='flexible'>
+          <view class='flexible fans_wrapper'>
+            <image src='/images/icon-fans.png' class='fans_icon'></image>
+            <view class='fs_24 fs_text'>粉丝</view>
+            <view class='fs_24'>{{item.UserOrganiser.FansNumber}}</view>
+          </view>
+          <view class='flexible'>
+            <image src='/images/icon-activity.png' class='act_icon'></image>
+            <view class='fs_24 fs_text'>活动</view>
+            <view class='fs_24'>{{item.UserOrganiser.ActivityNumber}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view
+    class='no_more color_light fs_28' 
+    wx:if='{{!moreFocused && focusedList.length}}'
+  >已经到底了~</view>
+  <view
+  wx:if='{{!moreFocused && !focusedList.length}}'
+  class='no_more color_light fs_28'
+>暂时没有关注的主办方~</view>
+</scroll-view>
+

@@ -1,0 +1,176 @@
+<view class='msg_container'>
+  <!-- 顶部头像区域 -->
+  <view class='top_avatar_container'>
+    <image
+      mode='aspectFill'
+      src='{{u.HeadImage}}'
+      class='avatar_bg'
+    ></image>
+    <view class='user_short_msg flexible'>
+      <view class='flexible distance_wrapper' wx:if='{{u.DistanceText}}'>
+        <image src='/images/location_w.png' class='location'></image>
+        <view class='fs_28 color_f distance'>{{u.DistanceText}}</view>
+      </view>
+      <view class='flexible'>
+        <view class='fs_34 color_f'>{{u.NickName}}</view>
+        <view class='fs_34 color_f vertical_line'>|</view>
+        <view class='fs_34 color_f'>{{u.Age}}</view>
+        <view class='fs_28 color_f active_state'>{{u.ActiveText}}</view>
+        <block wx:for='{{u.Icon}}' wx:key='index'>
+          <image
+            src='{{item}}'
+            class='vip_icon'
+          ></image>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!-- 图片滚动区域 -->
+  <scroll-view
+    class='border_bottom'
+    scroll-x
+    wx:if='{{photoList.length}}'
+  >
+    <block wx:for='{{photoList}}' wx:key='{{index}}'>
+      <view wx:if='{{item.type == "pic"}}' class='post_url_wrapper'>
+        <image
+          catchtap='showImgList'
+          data-post='{{item.postUrl}}'
+          src='{{item.postUrl}}'
+          class='post_url'
+          mode='aspectFill'
+        ></image>
+      </view>
+
+      <view
+        catchtap='navigateToDownload'
+        wx:elif='{{item.type == "video"}}'
+        class='post_url_wrapper'
+      >
+        <image src='{{item.postUrl}}' class='post_url' mode='aspectFill'></image>
+        <image src='/images/play_icon.png' class='play_icon'></image>
+      </view>
+    </block>
+  </scroll-view>
+  <!-- 认证列表 -->
+  <view class='auth_list border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>个人认证</view>
+    </view>
+    <view class='flexible icon_list'>
+      <view>
+        <image
+          src='{{u.IsFaceAuth == "true" ? "/images/is_auth.png" : "/images/is_auth_gray.png"}}'
+        ></image>
+        <view class='fs_30'>人脸核身</view>
+      </view>
+      <view>
+        <image
+          src='{{u.IsHeadImageAuth == "1" ? "/images/is_check.png" : "/images/is_check_gray.png"}}'
+        ></image>
+        <view class='fs_30'>头像认证</view>
+      </view>
+      <view>
+        <image
+          src='{{u.IsEducationAuth == "true" ? "/images/is_edu.png" : "/images/is_edu_gray.png"}}'
+        ></image>
+        <view class='fs_30'>学历认证</view>
+      </view>
+      <view>
+        <image
+          src='{{u.IsActivityAuth > 0 ? "/images/activity_choose.png" : "/images/activity_unchoose.png"}}'
+        ></image>
+        <view class='fs_30'>活动认证</view>
+      </view>
+    </view>
+  </view>
+  <!-- 内心独白 -->
+  <view class='border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>内心独白</view>
+    </view>
+    <view
+      class='{{u.Monologue ? "black_content" : "gray_content"}} fs_32 monologue'
+    >{{u.Monologue ? u.Monologue : "还没有填写内心独白"}}</view>
+  </view>
+  <!-- 邀约偏好 -->
+  <view class='border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>邀约偏好</view>
+    </view>
+    <view class='invite_prefer'>
+      <view class='fs_30'>内容：{{u.InviteContents ? u.InviteContents : '未设置'}}</view>
+      <view class='fs_30'>时间：{{u.InviteDateTime ? u.InviteDateTime : '未设置'}}</view>
+      <view class='fs_30'>地点：{{u.InvitePlace ? u.InvitePlace : '未设置'}}</view>
+    </view>
+  </view>
+  <!-- 动态滚动区域 -->
+  <view class='border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>个人动态</view>
+    </view>
+    <scroll-view
+      catchtap='navigateToDownload'
+      class='dynamic_scroll'
+      scroll-x
+      wx:if='{{dynamicList.length}}'
+    >
+      <block wx:for='{{dynamicList}}' wx:key='{{index}}'>
+        <view wx:if='{{item.type == "pic"}}' class='post_url_wrapper'>
+          <image src='{{item.postUrl}}' class='post_url' mode='aspectFill'></image>
+        </view>
+
+        <view wx:elif='{{item.type == "video"}}' class='post_url_wrapper'>
+          <image src='{{item.postUrl}}' class='post_url' mode='aspectFill'></image>
+          <image src='/images/play_icon.png' class='play_icon'></image>
+        </view>
+      </block>
+    </scroll-view>
+    <view wx:else class='gray_content fs_32 no_dynamic'>暂时没有什么动态</view>
+  </view>
+  <!-- 个人资料 -->
+  <view class='border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>个人资料(ID：{{u.QiyuId}})</view>
+    </view>
+    <view class='label_wrapper' wx:if='{{u.BasicDataList.length}}'>
+      <block wx:for='{{u.BasicDataList}}' wx:key='{{index}}'>
+        <view class='label_item'>{{item}}</view>
+      </block>
+    </view>
+    <view wx:else class='gray_content fs_32 no_dynamic'>暂未设置</view>
+  </view>
+  <!-- 择偶条件 -->
+  <view class='border_bottom'>
+    <view class='flexible label'>
+      <view class='blue_vertical_line'></view>
+      <view class='fs_34'>择偶条件</view>
+    </view>
+    <view class='label_wrapper' wx:if='{{u.ToDataList}}'>
+      <block wx:for='{{u.ToDataList}}' wx:key='{{index}}'>
+        <view class='label_item other_item'>{{item}}</view>
+      </block>
+    </view>
+    <view wx:else class='gray_content fs_32 no_dynamic'>暂未设置</view>
+  </view>
+</view>
+
+<view
+  data-bottom='1'
+  catchtap='navigateToDownload'
+  class='flexible bottom_bar'
+>
+  <view>
+    <image
+      src='/images/heart_full_t.png'
+      class='tap_heart'
+    ></image>
+    <view class='fs_22 light_text'>点亮</view>
+  </view>
+  <view class='tap_out'>约出来认识一下</view>
+</view>

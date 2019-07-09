@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="textarea-wrapper">
+    <textarea placeholder='说出你的故事...'></textarea>
+    <view class="text-count">0/1500</view>
+  </view>
+  <view class="tips">提示:介绍你的兴趣爱好能让对方更了解你，还能快速拉 近两人的距离哟~</view>
+</view>
